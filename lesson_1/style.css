@@ -7,6 +7,10 @@ header {
     margin: 0 auto;
 }
 
-mail {
+main {
     max-width: fit-content;
+}
+
+footer {
+    margin-bottom: 10px;
 }
