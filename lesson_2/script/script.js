@@ -3,7 +3,7 @@ let userAge;
 let userName;
   userName = 'John';
 let userSurname;
-  userSurname = 'Travolta';
+  userSurname = 'Newman';
 
 console.log(userName)
 
