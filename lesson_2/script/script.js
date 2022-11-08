@@ -1,5 +1,6 @@
+//переменные для хранения возраста, имени и фамилии пользователя
 let userAge;
-  userAge = 44;
+  userAge = 30;
 let userName;
   userName = 'John';
 let userSurname;
@@ -7,16 +8,28 @@ let userSurname;
 
 console.log(userName)
 
+// переменная, которая хранит нового пользователя
 let newUser;
+
+// переменная, которая хранит список покупок
 let purchaseList;
+
+// переменная, которая хранит информацию о том, является ли пользователь в сети (online)
 let userOnline;
-let employeeSalary = '4000 USD';
+
+// переменная, которая хранит зарплату работника
+let employeeSalary;
+
+// переменная, которая хранит координаты курсора (мыши)
 let mouseCursorCoordinates;
 
 console.log('Hello World!')
 
+// составим фразу о зарплате:
 let example = 'Моя зарплата составляет ';
+let employeeSalary = '4000 USD';
 let equivalent = ', что равняется 160000 грн.';
-// mySalary = example + employeeSalary + equivalent
+
+// как вариант mySalary = example + employeeSalary + equivalent
 
 console.log(example + employeeSalary + equivalent)
