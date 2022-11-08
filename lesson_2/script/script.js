@@ -27,7 +27,7 @@ console.log('Hello World!')
 
 // составим фразу о зарплате:
 let example = 'Моя зарплата составляет ';
-let employeeSalary = '4000 USD';
+employeeSalary = '4000 USD';
 let equivalent = ', что равняется 160000 грн.';
 
 // как вариант mySalary = example + employeeSalary + equivalent
