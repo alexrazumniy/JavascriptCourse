@@ -1,27 +1,26 @@
 const number1 = Number(prompt("Введите число 1"));
-const mathOperation = prompt("Введите действие, которое хотите выполнить (+ - / *)");
+const mathOperation = prompt("Введите действие, которое хотите выполнить (+ - * / **)");
 const number2 = Number(prompt("Введите число 2"));
-// let result;
-let sum;
-let subtraction;
-let multiplication;
-let division;
 
 switch (mathOperation) {
     case `+`:
-        sum = number1 + number2;
-        alert(`сумма чисел равна = ` + sum);
+        const sum = number1 + number2;
+        alert(`сумма чисел = ` + sum);
         break;
     case `-`:
-        subtraction = number1 - number2;
-        alert(`разность чисел равна = ` + subtraction);
-        break;
-    case `/`:
-        multiplication = number1 / number2;
-        alert(`результат деления равен = ` + multiplication);
+        const subtraction = number1 - number2;
+        alert(`разность чисел = ` + subtraction);
         break;
     case `*`:
-        division = number1 * number2;
-        alert(`произведение чисел равно = ` + division);
+        const multiplication = number1 * number2;
+        alert(`результат деления = ` + multiplication);
+        break;
+    case `/`:
+        const division = number1 / number2;
+        alert(`произведение чисел = ` + division);
+        break;
+    case `**`:
+        const exponentiation = number1 ** number2;
+        alert(`результат возведения в степень = ` + exponentiation);
         break;
 }
