@@ -13,11 +13,11 @@ switch (mathOperation) {
         break;
     case `*`:
         const multiplication = number1 * number2;
-        alert(`результат деления = ` + multiplication);
+        alert(`произведение чисел = ` + multiplication);
         break;
     case `/`:
         const division = number1 / number2;
-        alert(`произведение чисел = ` + division);
+        alert(`результат деления = ` + division);
         break;
     case `**`:
         const exponentiation = number1 ** number2;
