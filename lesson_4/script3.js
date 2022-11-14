@@ -1,8 +1,8 @@
 // ЗАДАНИЕ 3
 
-function getSum(a, b) {
-    return a + b;
+function getExponentiation(a, b = 2) {
+    return a ** b;
 }
 
-const sum = getSum (5, 7);
-alert(`сумма чисел равна ` + sum);
+const exp = getExponentiation (2, 4);
+alert(`результат возведения в степень равен ` + exp);
