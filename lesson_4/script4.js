@@ -52,6 +52,8 @@ function getDayOfWeek(d) {
         alert("Суббота");
     } else if (d === 7) {
         alert("Воскресенье");
+    } else if (d == '' || d == ' ') {
+        alert("Вы не ввели день недели!");
     } else {
         alert("Такого дня нет!");
     }
