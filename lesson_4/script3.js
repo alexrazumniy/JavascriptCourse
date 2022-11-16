@@ -4,5 +4,5 @@ function getExponentiation(a, b = 2) {
     return a ** b;
 }
 
-const exp = getExponentiation (2, 5);
-alert(`результат возведения в степень равен ` + exp);
+const exp = getExponentiation (5);
+alert(`результат возведения в степень равен ${exp}`);
