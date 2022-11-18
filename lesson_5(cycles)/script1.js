@@ -1,4 +1,4 @@
-// ---variant 1 WHILE---
+// ---WHILE---
 
 // let i = 1;
 // while (i <= 10) {
@@ -11,7 +11,7 @@
 // }
 
 
-// ---variant 2 DO...WHILE---
+// ---DO...WHILE---
 
 // let i = 1;
 // do {
@@ -25,24 +25,29 @@
 // } while (i >= 10);
 
 
-// ---variant 3 FOR---
+// --- FOR---
+
+// --variant 1--:
 
 // for (let i = 1; i <= 10; i++) {
 //     console.log(i);
 // }
 
-// or another desicion:
+// --variant 2--:
 
 // for (let i = 1; i <= 10;) {
 //     console.log(i++);
 // }
 
+// --------------------
+
+// --variant 1--:
 
 // for (let i = 20; i >= 10; i--) {
 //     console.log(i);
 // }
 
-// or another desicion:
+// --variant 2--:
 
 for (let i = 20; i >= 10;) {
     console.log(i--);
