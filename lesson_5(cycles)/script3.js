@@ -1,39 +1,42 @@
-const LOGIN = "ALEX";
-const PASSWORD = "q1w2e3";
+// ВАРИАНТ 1
 
-const authorize = () => {
-    let userLogin;
-    let userPassword;
-    // let isAuthSuccess = false;
-    let i = 2;
+// const LOGIN = "ALEX";
+// const PASSWORD = "q1w2e3";
 
-    while (i >= 0) {
-        userLogin = prompt("Логин:");
-        if (!userLogin) {
-            alert("Введите логин!");
-            continue;
-        }
+// const authorize = () => {
+//     let userLogin;
+//     let userPassword;
+//     // let isAuthSuccess = false;
+//     let i = 2;
 
-        userPassword = prompt("Пароль:");
-        if (!userPassword) {
-            alert("Введите пароль!");
-            continue;
-        }
+//     while (i >= 0) {
+//         userLogin = prompt("Логин:");
+//         if (!userLogin) {
+//             alert("Введите логин!");
+//             continue;
+//         }
 
-        if (userLogin === LOGIN || userPassword === PASSWORD) {
-            // isAuthSuccess = true;
-            alert("Добро пожаловать!");
-            break;
+//         userPassword = prompt("Пароль:");
+//         if (!userPassword) {
+//             alert("Введите пароль!");
+//             continue;
+//         }
 
-        } else {
-            alert("Данные неверны!");
-        }
-        alert(`Оставшееся количество попыток ввода - ${i--}`);
-    }
-}
+//         if (userLogin === LOGIN && userPassword === PASSWORD) {
+//             // isAuthSuccess = true;
+//             alert("Добро пожаловать!");
+//             break;
 
-authorize();
+//         } else {
+//             alert("Данные неверны!");
+//         }
+//         alert(`Оставшееся количество попыток ввода - ${i--}`);
+//     }
+// }
 
+// authorize();
+
+// ВАРИАНТ 2
 
 // const LOGIN = "ALEX";
 // const PASSWORD = "q1w2e3";
@@ -69,3 +72,49 @@ authorize();
 // }
 
 // authorize();
+
+
+// ВАРИАНТ 3 (Аня, разбор ДЗ)
+
+const LOGIN = "ALEX";
+const PASSWORD = "q1w2e3";
+
+const authorize = () => {
+
+    let isAuthSuccess = false;
+    let userAttempts = 3;
+
+    while (userAttempts !== 0) {
+
+        let userLogin = prompt("Логин:");
+
+        if (!userLogin) {
+            alert("Введите логин!");
+            continue;
+        }
+
+        let userPassword = prompt("Пароль:");
+
+        if (!userPassword) {
+            alert("Введите пароль!");
+            continue;
+        }
+
+        if (userLogin === LOGIN && userPassword === PASSWORD) {
+            isAuthSuccess = true;
+            break;
+
+        } else {
+            userAttempts--
+            alert(`Данные не верны. Оставшееся количество попыток: ` + userAttempts);
+        }
+    }
+
+    if (isAuthSuccess) {
+        alert("Welcome!");
+    } else {
+        alert("Попытки закончились!");
+    }
+}
+
+authorize();
