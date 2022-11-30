@@ -7,11 +7,11 @@ const salaries = {
 const getSalariesSum = (salaries) => {
     let sum = 0;
     for (let employee in salaries) {
-        sum += +salaries[employee];
+        sum += Number(salaries[employee]); // вариант +salaries[employee]
     }
 
-    return sum;
+    return sum.toFixed(2);
 };
 
 const result = getSalariesSum(salaries);
-console.log(result.toFixed(2))
+console.log(result) // вариант console.log(result.toFixed(2))
