@@ -6,7 +6,7 @@ const countTrue = (arr) => {
     let value = 0;
 
     for (let number of arr) {
-        console.log(number);
+        // console.log(number);
         if (number === true) {
             value += number
         }
