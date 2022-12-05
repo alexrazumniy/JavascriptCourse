@@ -55,7 +55,7 @@
 const numbers = [1, 10, 17, 24, 45];
 
 const averageValue = numbers.reduce((sum, value) => {
-    return sum += value / numbers.length;
+    return sum + value / numbers.length;
 }, 0);
 
 console.log(averageValue)
