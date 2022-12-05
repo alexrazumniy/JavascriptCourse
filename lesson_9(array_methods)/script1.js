@@ -9,41 +9,55 @@
 
 // ----- task 1.2
 
-const users = [
-    {
-      name: 'Sam',
-      role: 'admin',
-      age: 25,
-    },
-      {
-      name: 'Peter',
-      role: 'admin',
-      age: 16,
-    },
-      {
-      name: 'Pablo',
-      role: 'admin',
-      age: 32,
-    },
-      {
-      name: 'Enrico',
-      role: 'client',
-      age: 43,
-    },
-      {
-      name: 'Mary',
-      role: 'client',
-      age: 34,
-    },
-      {
-      name: 'Katerine',
-      role: 'guest',
-      age: 17,
-    },
-  ]
-  
-  const adultAdmins = users.filter((user) => role === 'admin' && age > 18);
+// const users = [
+//     {
+//         name: 'Sam',
+//         role: 'admin',
+//         age: 25,
+//     },
+//     {
+//         name: 'Peter',
+//         role: 'admin',
+//         age: 16,
+//     },
+//     {
+//         name: 'Pablo',
+//         role: 'admin',
+//         age: 32,
+//     },
+//     {
+//         name: 'Enrico',
+//         role: 'client',
+//         age: 43,
+//     },
+//     {
+//         name: 'Mary',
+//         role: 'client',
+//         age: 34,
+//     },
+//     {
+//         name: 'Katerine',
+//         role: 'guest',
+//         age: 17,
+//     },
+// ]
 
-//   adultAdmins(users)
-    // .map(user)
-    console.log(adultAdmins);
+
+// const adultAdmins = users.filter(user => user.age > 18 && user.role === 'admin');
+// console.log(adultAdmins);
+
+// вопрос: как применять "map" в этом задании? Ведь хватает одного "filter"
+
+
+
+// ----- task 1.3
+
+const numbers = [1, 10, 17, 24, 45];
+
+const averageValue = numbers.reduce((sum, value) => {
+    average = sum += value / numbers.length;
+        
+    return average
+}, 0);
+
+console.log(averageValue)
