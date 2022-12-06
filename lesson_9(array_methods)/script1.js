@@ -42,11 +42,14 @@
 //     },
 // ]
 
+// const adultAdmins = (arr) => {
+//     return arr
+//         .filter((user) => user.age > 18 && user.role === 'admin')
+//         .map((user) => user.name)
+// }
 
-// const adultAdmins = users.filter(user => user.age > 18 && user.role === 'admin');
-// console.log(adultAdmins);
-
-// вопрос: как применять "map" в этом задании? Ведь хватает одного "filter"
+// const result = adultAdmins(users);
+// console.log(result)
 
 
 
@@ -59,3 +62,25 @@ const averageValue = numbers.reduce((sum, value) => {
 }, 0);
 
 console.log(averageValue)
+
+
+// Решение из разбора ДЗ
+
+// const countAverage = (arr) => {
+//     // total - общее значение
+//     // amount - текущее значение (число)
+//     // index - количество итераций
+//     // array - массив, который перебираем
+
+//     return arr.reduce((total, amount, index, array) => {
+//         total += amount;
+//         if (index === array.length - 1) {
+//             return total / array.length;
+//         } else {
+//             return total;
+//         }
+//     });
+// }
+
+// const averageResult = countAverage([1, 10, 17, 24, 45]);
+// console.log(averageResult)
