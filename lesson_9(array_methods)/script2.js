@@ -1,49 +1,69 @@
-// Callback functions
-const array = [1, -2, 3, -4, 5];
+// const ownForEach = (arr, logger) => {
+//     for (let num of arr) {
+//         logger(num, arr.indexOf(num), arr)
+//     }
+// }
 
-const ownFilter = (array, isNegative) => {
-    for (let number of array) {
-        if (number > 0) {
-            console.log("Invalid numbers");
+// const logger = (element, index, array) => {
+//     console.log(`In array [${array}] on position ${index}: ${element}`);
+// }; // callback function
 
-            return 0;
+// ownForEach([1, 2, 3], logger);
+
+
+// // Решение в одну строчку
+
+// let arr = [1, 2, 3]
+// const logger = (element, index, array) => {
+//     console.log(`In array [${array}] on position ${index}: ${element}`);
+// }
+// let test1 = arr.forEach((num) => logger(num, arr.indexOf(num), arr))
+
+
+// --------------------------
+
+// const ownMap = (arr, increment) => {
+//     let arrClone = [];
+//     for (let num of arr) {
+//         arrClone.push(increment(num))
+//     }
+//     return arrClone
+// }
+
+// const increment = (number) => number + 1; // callback function
+
+// let resOwnMap = ownMap([1, 2, 3], increment); // [2, 3, 4]
+// console.log(resOwnMap)
+
+
+// // Решение в одну строчку
+
+// let arr2 = [1, 2, 3];
+// const increment = (number) => number + 1;
+// let test2 = arr2.map((num) => increment(num));
+// console.log(test2);
+
+
+// --------------------------
+
+const ownFilter = (arr, isNegative) => {
+    let arrClone = [];
+    for (let num of arr) {
+        if (isNegative(num)) {
+            arrClone.push(num)
         }
-
-        return isNegative(array);
     }
+    return arrClone
 }
-    const result = (array) => number + 1;
 
-    const res = isNegative(array, result);
+const isNegative = (number) => number < 0; // callback function
 
-    console.log(res);
+let resOwnFilter = ownFilter([-2, 4, -1], isNegative); // [-2, -1]
+console.log(resOwnFilter);
 
+
+// // Решение в одну строчку
+// let arr3 = [-2, 4, -1];
 // const isNegative = (number) => number < 0;
-
-
-
-
-
-//   callback();
-
-// // const testFunction = (cb) => {
-// //     cb();
-// // };
-
-// // testFunction(callback)
-
-
-
-
-
-// const averageValue = array.reduce((sum, value) => {
-//     return sum += value / array.length;
-// }, 0);
-
-// console.log(averageValue)
-
-
-
-// const numbers = [37, 12, 28, 4, 9] 
-// const total = numbers.reduce((total, n) => total + n)
-// console.log(total) // 90
+// let test3 = arr3.filter((num) => isNegative(num));
+// console.log(test3);
