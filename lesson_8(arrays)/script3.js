@@ -11,12 +11,17 @@ const findExcess = (arr) => {
     let oddNumbers = [];
 
     for (let number of arr) {
-        if (number % 2 === 0) {
-            evenNumbers.push(number)
-        } else {
-            oddNumbers.push(number)
-        }
+
+        number % 2 == 0 ? evenNumbers.push(number) : oddNumbers.push(number)
+
+        // if (number % 2 === 0) {
+        //     evenNumbers.push(number)
+        // } else {
+        //     oddNumbers.push(number)
+        // }
     }
+
+    
     if (evenNumbers.length > oddNumbers.length) {
         // console.log(evenNumbers);
         alert(`лишнее число ` + oddNumbers);
