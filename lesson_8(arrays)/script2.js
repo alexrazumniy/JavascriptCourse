@@ -5,7 +5,7 @@ const getOccurrencesCount = (arr) => {
         if (!occurrencesNumber[element]) {
             occurrencesNumber[element] = 1
         } else {
-            occurrencesNumber[element] = occurrencesNumber[element] + 1
+            occurrencesNumber[element] = occurrencesNumber[element] + 1 // occurrencesNumber[element] += 1
         }
     }
     return occurrencesNumber;
