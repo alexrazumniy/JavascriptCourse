@@ -16,3 +16,24 @@ const countTrue = (arr) => {
 
 const result = countTrue([true, false, false, true, false]);
 console.log(`количество значений "true" в массиве равно ${result}`)
+
+
+// 2 Вариант (разбор ДЗ с другой группы)
+
+// const countTrue = (arr) => {
+
+//     const res = [];
+
+//     for (let number of arr) {
+
+//         if (number) {
+//             res.push(number)
+//         }
+//     }
+
+//     return res.length
+
+// }
+
+// const result = countTrue([true, false, false, true, false]);
+// console.log(`количество значений "true" в массиве равно ${result}`)
