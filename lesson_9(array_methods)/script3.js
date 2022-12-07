@@ -48,42 +48,20 @@ const data = [
       isActive: true,
     },
   ];
-  
-  filterData(data, { age: 23 });
-  // [
-  //     {
-  //         "name": "Steve",
-  //         "age": 23,
-  //         "position": "middle",
-  //         "isActive": true
-  //     }
-  // ]
-  
-  filterData(data, { age: 24 });
-  
-  // [
-  //     {
-  //         "name": "John",
-  //         "age": 24,
-  //         "position": "senior",
-  //         "isActive": false
-  //     },
-  //     {
-  //         "name": "Mary",
-  //         "age": 24,
-  //         "position": "middle",
-  //         "isActive": false
-  //     }
-  // ]
-  
-  filterData(data, { age: 19, position: "junior" });
-  // [
-  //     {
-  //         "name": "Sally",
-  //         "age": 19,
-  //         "position": "junior",
-  //         "isActive": false
-  //     }
-  // ]
-  
-  // то есть, функция вернула массив со всеми работниками на позиции junior и всеми работниками, которым 19 лет
+
+
+const filterData = (dataArray, objectToFilter) => {
+  let result = dataArray.filter(item => {
+
+    console.log("keys:", Object.keys(objectToFilter));
+
+    return Object.keys(objectToFilter).every(key => {
+
+      return item[key] === objectToFilter[key]
+    })
+  });
+  return result;
+}
+
+let resFiltered = filterData(data, {age: 24})
+console.log(resFiltered);
