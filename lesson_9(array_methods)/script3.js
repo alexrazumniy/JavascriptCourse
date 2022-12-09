@@ -66,16 +66,17 @@ const objectToFilter = {
 console.log(objectToFilter);
 
 
-
 const filter = (data, objectToFilter) => {
 
     let filterData = []
-    if (data.filter((item) => Object.keys(objectToFilter).every(key =>
-          item[key] === data[key]))) {
-      filterData.push(data.item)
+
+    for (let user of data) {
+      if (user.key === objectToFilter.key) { 
     }
-    return filterData
+    filterData.push(user)
   }
+  return filterData
+}
   
   let resFiltered = filter(data, objectToFilter)
   console.log(resFiltered);
@@ -88,16 +89,9 @@ const filter = (data, objectToFilter) => {
 
 
 
+// Решение из разбора ДЗ 
 
-// const filterData = (dataArray, objectToFilter) => dataArray.filter(item =>
-//   Object.keys(objectToFilter).every(key =>
-//     item[key] === objectToFilter[key]));
-
-
-// console.log(filterData(data, { age: 19, position: "junior" }));
-
-
-
+// Вариант 1
 
 // const filterData = (dataArray, objectToFilter) => {
 //   let result = dataArray.filter(item => {
@@ -114,3 +108,12 @@ const filter = (data, objectToFilter) => {
 
 // let resFiltered = filterData(data, {position: "middle"})
 // console.log(resFiltered);
+
+// Вариант 2 Короткий
+
+// const filterData = (dataArray, objectToFilter) => dataArray.filter(item =>
+//   Object.keys(objectToFilter).every(key =>
+//     item[key] === objectToFilter[key]));
+
+// console.log(filterData(data, { age: 19, position: "junior" }));
+
