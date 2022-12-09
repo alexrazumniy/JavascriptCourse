@@ -50,16 +50,51 @@ const data = [
 ];
 
 
-//  for of
+const name = prompt("name");
+const age = prompt("age");
+const position = prompt("position");
+const isActive = prompt("isActive");
+  
+
+const objectToFilter = {
+  name,
+  age,
+  position,
+  isActive
+};
+
+console.log(objectToFilter);
 
 
 
-const filterData = (dataArray, objectToFilter) => dataArray.filter(item =>
-  Object.keys(objectToFilter).every(key =>
-    item[key] === objectToFilter[key]));
+const filter = (data, objectToFilter) => {
+
+    let filterData = []
+    if (data.filter((item) => Object.keys(objectToFilter).every(key =>
+          item[key] === data[key]))) {
+      filterData.push(data.item)
+    }
+    return filterData
+  }
+  
+  let resFiltered = filter(data, objectToFilter)
+  console.log(resFiltered);
 
 
-console.log(filterData(data, { age: 19, position: "junior" }));
+
+// 3 завданні буде два перебираючих метода, Filter, який збере підходящі. А в ньому every, який перевірить, щоб кожне значення в объекті співпало з фільтром (бо їх може бути декілька, age і position наприклад, і кожен повинен співпадати).
+
+// Тобто ми в методі фільтр будемо перевіряти кожен объект, на повне співпадіння зі значеннями фільтру
+
+
+
+
+// const filterData = (dataArray, objectToFilter) => dataArray.filter(item =>
+//   Object.keys(objectToFilter).every(key =>
+//     item[key] === objectToFilter[key]));
+
+
+// console.log(filterData(data, { age: 19, position: "junior" }));
 
 
 
