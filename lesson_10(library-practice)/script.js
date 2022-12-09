@@ -14,30 +14,51 @@ const books = [
     },
 ];
 
+const booksAvailable = [];
+const booksMissing = [];
+
 function library() {
-    let action = Number(prompt("Какое действие вы хотите выполнить? 1 - взять книгу, 2 - вернуть книгу, 3 - добавить книгу"));
-    if (!action) {
-        alert("Жаль, что уже уходите :(")
-    } else {
-        switch (action) {
-            case 1:
-                prompt("Введите название или автора книги");
-                break;
-            case 2:
-                prompt("Введите id книги, которую хотите вернуть");
-                break;
-            case 3:
-                
-
-        }
+    const action = prompt(`Какое действие вы хотите выполнить? Для выбора введите:
+1 - взять книгу, 2 - вернуть книгу, 3 - добавить книгу`);
+    
+    switch (action) {
+        case "1":
+            takeBook();
+            break;
+        case "2":
+            returnBook();
+            break;
+        case "3":
+            addMyBook();
+            break;
+        case '':
+            alert(`Ничего не выбрано. Выберите значение
+1 - взять книгу, 2 - вернуть книгу, 3 - добавить книгу`);
+            break;
+        case null:
+            alert("Жаль, что уже уходите :(");
+            break;
+        default:
+            alert("Неверное значение");
     }
 }
 
-function takeBook() {
-    let takeId = prompt("Введите id книги, которую хотите взять");
-    if (takeId !== books.id) {
-        alert("Книги с данным id в библиотеке нет или ее взяли почитать!")
-    } else {
-        books.includes()
-    }
+
+
+let Object = {}
+console.log(Object);
+
+
+const takeBook = () => {
+    
 }
+
+
+
+//     let takeId = prompt("Введите id книги, которую хотите взять");
+//     if (takeId !== books.id) {
+//         alert("Книги с данным id в библиотеке нет или ее взяли почитать!")
+//     } else {
+//         books.includes()
+//     }
+// }
