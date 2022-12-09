@@ -49,22 +49,22 @@ const data = [
   },
 ];
 
-
-const name = prompt("name");
-const age = prompt("age");
-const position = prompt("position");
-const isActive = prompt("isActive");
+// ----Для варианта с вводом вручную----
+// const name = prompt("name");
+// const age = prompt("age");
+// const position = prompt("position");
+// const isActive = prompt("isActive");
   
+// let objectToFilter = {
+//   name,
+//   age,
+//   position,
+//   isActive
+// };
 
-const objectToFilter = {
-  name,
-  age,
-  position,
-  isActive
-};
+let objectToFilter = {age: 19};
 
 console.log(objectToFilter);
-
 
 const filter = (data, objectToFilter) => {
 
@@ -74,6 +74,7 @@ const filter = (data, objectToFilter) => {
       if (user.key === objectToFilter.key) { 
     }
     filterData.push(user)
+    console.log(filterData);
   }
   return filterData
 }
@@ -81,11 +82,6 @@ const filter = (data, objectToFilter) => {
   let resFiltered = filter(data, objectToFilter)
   console.log(resFiltered);
 
-
-
-// 3 завданні буде два перебираючих метода, Filter, який збере підходящі. А в ньому every, який перевірить, щоб кожне значення в объекті співпало з фільтром (бо їх може бути декілька, age і position наприклад, і кожен повинен співпадати).
-
-// Тобто ми в методі фільтр будемо перевіряти кожен объект, на повне співпадіння зі значеннями фільтру
 
 
 
