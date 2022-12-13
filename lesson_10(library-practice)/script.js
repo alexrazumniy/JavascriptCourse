@@ -14,8 +14,6 @@ const books = [
     },
 ];
 
-const booksMissing = [];
-
 function library() {
     const action = prompt(`Какое действие вы хотите выполнить? Для выбора введите:
 1 - взять книгу, 2 - вернуть книгу, 3 - добавить книгу`);
