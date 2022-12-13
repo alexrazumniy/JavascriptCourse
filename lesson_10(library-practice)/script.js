@@ -48,8 +48,7 @@ const takeBook = () => {
         .map((book) => `- ${book.name}`)
         .join("\n");
 
-    let desiredBookName = prompt(`Введите название книги из списка: 
-${availableBooksNames}`);
+    let desiredBookName = prompt(`Введите название книги из списка: \n${availableBooksNames}`);
 
     if (!desiredBookName) {
         alert(`Такой книги нет`)
