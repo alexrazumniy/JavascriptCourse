@@ -49,7 +49,8 @@ const data = [
   },
 ];
 
-// ----Для варианта с вводом вручную----
+// ---- МОЙ ВАРИАНТ (НЕРАБОЧИЙ :(  )
+
 // const name = prompt("name");
 // const age = prompt("age");
 // const position = prompt("position");
@@ -62,25 +63,27 @@ const data = [
 //   isActive
 // };
 
-let objectToFilter = {age: 19};
+// // let objectToFilter = {age: 19};
 
-console.log(objectToFilter);
+// const filter = (data, filterCallback) => {
 
-const filter = (data, objectToFilter) => {
+//     let filterData = []
 
-    let filterData = []
+//     for (let user of data) {
+//       if (user.key === objectToFilter.key) { 
+//     }
+//     filterData.push(user)
+//     console.log(filterData);
+//   }
+//   return filterData
+// }
 
-    for (let user of data) {
-      if (user.key === objectToFilter.key) { 
-    }
-    filterData.push(user)
-    console.log(filterData);
-  }
-  return filterData
-}
-  
-  let resFiltered = filter(data, objectToFilter)
-  console.log(resFiltered);
+// const filterCallback = (objectToFilter) => {
+//   return Object.keys(objectToFilter).every(key => key === data.key)
+// }
+
+// let resFiltered = filter(data, objectToFilter)
+// console.log(resFiltered);
 
 
 
