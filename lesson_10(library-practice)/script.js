@@ -141,17 +141,3 @@ function generateBookId () {
 
     return generatedId;
 }
-
-
-
-
-
-
-
-//     let takeId = prompt("Введите id книги, которую хотите взять");
-//     if (takeId !== books.id) {
-//         alert("Книги с данным id в библиотеке нет или ее взяли почитать!")
-//     } else {
-//         books.includes()
-//     }
-// }
