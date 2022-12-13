@@ -50,7 +50,7 @@ const takeBook = () => {
         .map((book) => `- ${book.name}`)
         .join("\n");
 
-    let desiredBookName = prompt(`Введите название или автора книги из списка: 
+    let desiredBookName = prompt(`Введите название книги из списка: 
 ${availableBooksNames}`);
 
     if (!desiredBookName) {
