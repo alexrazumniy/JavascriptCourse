@@ -46,7 +46,7 @@ const takeBook = () => {
     let desiredBookNameOrAuthor = prompt(`Введите название книги или автора из списка: \n${availableBooksList}`);
 
     if (!desiredBookNameOrAuthor) {
-        alert(`Такой книги нет`)
+        alert(`Ничего не выбрано`)
 
         return;
     }
@@ -111,10 +111,10 @@ const addMyBook = () => {
     const invalidName = books.find(book => book.name === name && book.author === author);
 
     const newBook = {
-        name: name,
-        author: author,
-        isReading: false,
         id: generateBookId(),
+        author: author,
+        name: name,
+        isReading: false,
     }
 
     if (invalidName) {
