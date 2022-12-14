@@ -108,6 +108,7 @@ const addMyBook = () => {
     const name = prompt(`Введите название книги, которую хотите добавить в библиотеку`);
     const author = prompt(`Введите автора книги, которую хотите добавить в библиотеку`);
 
+    const invalidName = books.find(book => book.name === name && book.author === author);
 
     const newBook = {
         name: name,
@@ -116,7 +117,7 @@ const addMyBook = () => {
         id: generateBookId(),
     }
 
-    if (newBook.name === books.name) {
+    if (invalidName) {
         alert(`Спасибо конечно, но такая книга у нас уже есть. Приносите что-нибудь другое:)`);
 
         return;
