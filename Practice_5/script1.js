@@ -49,23 +49,19 @@ const authorize = () => {
 // authorize();
 
 
-
 const drawPyramid = (height) => {
     for (let i = 0; i < height; i++) {
-        let spacesBefore = "";
-        let stars = "";
-        // console.log(i);
+        let stars = ""
+        let spaces = ""
         for (let j = 0; j < 2 * i + 1; j++) {
-            stars += "*";
-            // console.log(j);
+            stars += "*"
         }
-        for (let k = 0; k < height - i - 1; k++) {
-            spacesBefore += " ";
-            // console.log(k);
+        for (let k = 0; k < height - i + 1; k++) {
+            spaces += " "
         }
-        console.log(spacesBefore + stars);
+        console.log(spaces + stars);
     }
 };
 
-const desiredHeight = Number(prompt("Какая высота пирамиды ?"));
-drawPyramid(desiredHeight)
+const desiredHeight = +prompt("What is the pyramid height?");
+drawPyramid (desiredHeight)
