@@ -6,12 +6,7 @@ const books = [
     { id: 2, author: "Толстой", name: "Анна Каренина", isReading: false },
     { id: 3, author: "Оруэл", name: "1984", isReading: false },
     { id: 4, author: "Сервантес", name: "Дон Кихот", isReading: false },
-    {
-        id: 5,
-        author: "Достоевский",
-        name: "Преступление и наказание",
-        isReading: false,
-    },
+    { id: 5, author: "Достоевский", name: "Преступление и наказание", isReading: false },
 ];
 
 function library() {
@@ -43,12 +38,12 @@ function library() {
 
 const takeBook = () => {
 
-    const availableBooksNames = books
+    const availableBooksList = books
         .filter((book) => !book.isReading)
         .map((book) => `- ${book.name}. (Автор - ${book.author})`)
         .join("\n");
 
-    let desiredBookNameOrAuthor = prompt(`Введите название книги или автора из списка: \n${availableBooksNames}`);
+    let desiredBookNameOrAuthor = prompt(`Введите название книги или автора из списка: \n${availableBooksList}`);
 
     if (!desiredBookNameOrAuthor) {
         alert(`Такой книги нет`)
@@ -99,7 +94,7 @@ const returnBook = () => {
     }
 
     if (!currentBook.isReading) {
-        alert(`Эта книга сейчас не читается`)
+        alert(`Вы не брали книгу с таким ID`)
 
         return;
     }
@@ -110,30 +105,30 @@ const returnBook = () => {
 
 const addMyBook = () => {
 
-    const name = prompt(`Введите название книги, которую хотите добавить в библиотеку`);    
+    const name = prompt(`Введите название книги, которую хотите добавить в библиотеку`);
     const author = prompt(`Введите автора книги, которую хотите добавить в библиотеку`);
 
-    
+
     const newBook = {
         name: name,
         author: author,
         isReading: false,
-        id: generateBookId (),
+        id: generateBookId(),
     }
-    
+
     if (newBook.name === books.name) {
         alert(`Спасибо конечно, но такая книга у нас уже есть. Приносите что-нибудь другое:)`);
 
         return;
     }
-    
+
     console.log(newBook);
     books.push(newBook);
 
     alert(`Спасибо, книга добавлена в библиотеку! ID книги ${newBook.id}?`);
 }
 
-function generateBookId () {
+function generateBookId() {
     let isBookWithIdExists = true;
     let generatedId;
 
