@@ -106,8 +106,6 @@ const addMyBook = () => {
     const author = prompt(`Введите автора книги, которую хотите добавить в библиотеку`);
 
     // Проверка несовпадения названия книги и автора с существующими в базе
-
-    
     const invalidName = books.find(book => book.name === name && book.author === author);
     
     if (invalidName) {
