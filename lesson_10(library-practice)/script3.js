@@ -69,7 +69,7 @@ const takeBook = () => {
         return;
     }
 
-    desiredBook.amount = desiredBook.amount - 1;
+    desiredBook.amount -= 1;
 
     alert(`Отличный выбор! ID вашей книги - ${desiredBook.id}. Запомните его! \nВ наличии осталось ${desiredBook.amount} экз.`);
 
@@ -95,7 +95,7 @@ const returnBook = () => {
         return;
     }
 
-    currentBook.amount = currentBook.amount + 1;
+    currentBook.amount += 1;
     alert(`Спасибо, приходите к нам еще! Вам понравилась книга ${currentBook.name}?`);
     // console.log(currentBook.amount);
 };
@@ -106,6 +106,8 @@ const addMyBook = () => {
     const author = prompt(`Введите автора книги, которую хотите добавить в библиотеку`);
 
     // Проверка несовпадения названия книги и автора с существующими в базе
+
+    
     const invalidName = books.find(book => book.name === name && book.author === author);
     
     if (invalidName) {
