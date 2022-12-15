@@ -2,16 +2,11 @@ const actionButton = document.querySelector("button");
 actionButton.addEventListener("click", library);
 
 const books = [
-    { id: 1, author: "Фицджеральд", name: "Великий Гетсби", isReading: false },
-    { id: 2, author: "Толстой", name: "Анна Каренина", isReading: false },
-    { id: 3, author: "Оруэл", name: "1984", isReading: false },
-    { id: 4, author: "Сервантес", name: "Дон Кихот", isReading: false },
-    {
-        id: 5,
-        author: "Достоевский",
-        name: "Преступление и наказание",
-        isReading: false,
-    },
+    { id: 1, author: "Фицджеральд", name: "Великий Гетсби", amount: 5 },
+    { id: 2, author: "Толстой", name: "Анна Каренина", amount: 5 },
+    { id: 3, author: "Оруэл", name: "1984", amount: 5 },
+    { id: 4, author: "Сервантес", name: "Дон Кихот", amount: 5 },
+    { id: 5, author: "Достоевский", name: "Преступление и наказание", amount: 5 },
 ];
 
 function library() {
@@ -43,23 +38,23 @@ function library() {
 
 const takeBook = () => {
 
-    const availableBooksNames = books
-        .filter((book) => !book.isReading)
-        .map((book) => `- ${book.name}`)
+    const availableBooksList = books
+        // .filter((book) => !book.isReading)
+        .map((book) => `- ${book.name}. (Автор - ${book.author}). В наличии ${book.amount} экз.`)
         .join("\n");
 
-    let desiredBookName = prompt(`Введите название книги из списка: \n${availableBooksNames}`);
+    let desiredBookNameOrAuthor = prompt(`Введите название книги или автора из списка: \n${availableBooksList}`);
 
-    if (!desiredBookName) {
-        alert(`Такой книги нет`)
+    if (!desiredBookNameOrAuthor) {
+        alert(`Ничего не выбрано`)
 
         return;
     }
 
-    desiredBookName = desiredBookName.trim().toLowerCase();
+    desiredBookNameOrAuthor = desiredBookNameOrAuthor.trim().toLowerCase();
 
     const desiredBook = books.find((book) => {
-        return book.name.toLowerCase() === desiredBookName;
+        return book.name.toLowerCase() === desiredBookNameOrAuthor || book.author.toLowerCase() === desiredBookNameOrAuthor;
     });
 
     if (!desiredBook) {
@@ -68,19 +63,18 @@ const takeBook = () => {
         return;
     }
 
-    if (desiredBook.isReading) {
-        alert(`Извините, эту книгу уже взяли почитать!`)
+    if (desiredBook.amount === 0) {
+        alert(`Извините, этой книги сейчас нет в наличии!`)
 
         return;
     }
 
-    desiredBook.isReading = true;
+    desiredBook.amount -= 1;
 
-    alert(`Отличный выбор! ID вашей книги - ${desiredBook.id}. Запомните его!`);
+    alert(`Отличный выбор! ID вашей книги - ${desiredBook.id}. Запомните его! \nВ наличии осталось ${desiredBook.amount} экз.`);
 
     console.log(books);
 };
-
 
 const returnBook = () => {
     const returningBookId = +prompt(`Введите ID книги, которую хотите вернуть`);
@@ -93,39 +87,50 @@ const returnBook = () => {
 
     const currentBook = books.find((book) => book.id === returningBookId);
 
-    if (!currentBook) {
-        alert(`Неверный ID книги! Введите корректный ID`)
+    // Проверка непревышения количества экземпляров в наличии
+
+    if (!currentBook || currentBook.amount > 4) {
+        alert(`Вы не брали книгу с таким ID. Введите корректный ID!`)
 
         return;
     }
 
-    if (!currentBook.isReading) {
-        alert(`Эта книга сейчас не читается`)
-
-        return;
-    }
-
-    currentBook.isReading = false;
+    currentBook.amount += 1;
     alert(`Спасибо, приходите к нам еще! Вам понравилась книга ${currentBook.name}?`);
+    // console.log(currentBook.amount);
 };
 
 const addMyBook = () => {
+
     const name = prompt(`Введите название книги, которую хотите добавить в библиотеку`);
     const author = prompt(`Введите автора книги, которую хотите добавить в библиотеку`);
 
+    // Проверка несовпадения названия книги и автора с существующими в базе - ДОРАБОТАТЬ ЗАГЛАВНЫЕ!
+    const invalidName = books.find(book => book.name === name && book.author === author);
+    
+    if (invalidName) {
+        alert(`Спасибо конечно, но такая книга у нас уже есть. Приносите что-нибудь другое:)`);
+
+        return;
+    }
+
+    // Только после этого спрашиваем сколько экземпляров собирается добавить пользователь
+    const amount = +prompt(`Сколько экземпляров книги вы хотите добавить в библиотеку?`)
+
     const newBook = {
-        name,
+        id: generateBookId(),
         author,
-        isReading: false,
-        id: generateBookId (),
+        name,
+        amount,
     }
 
     console.log(newBook);
     books.push(newBook);
+
     alert(`Спасибо, книга добавлена в библиотеку! ID книги ${newBook.id}?`);
 }
 
-function generateBookId () {
+function generateBookId() {
     let isBookWithIdExists = true;
     let generatedId;
 
