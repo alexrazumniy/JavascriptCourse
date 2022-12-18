@@ -92,7 +92,7 @@ const loopFactorial = (n) => {
 const factorial = loopFactorial(5);
 console.log(`factorial`, factorial);
 
-// вычисление факториала РЕКУРСИВНЫМ методом
+// вычисление факториала РЕКУРСИВНЫМ МЕТОДОМ
 
 const recursiveFactorial = (n) => {
     if (n === 1) { // это БАЗА РЕКУРСИИ или УСЛОВИЕ ВЫХОДА ИЗ РЕКУРСИИ
