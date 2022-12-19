@@ -188,8 +188,7 @@ const blogItemElement = createBlogArticle(
     "My first article", [
     "a",
     "b",
-]
-);
+]);
 document.body.append(blogItemElement);
 
 // div
