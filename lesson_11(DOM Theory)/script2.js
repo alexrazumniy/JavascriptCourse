@@ -3,10 +3,10 @@
 // Create element
 const element = document.createElement("div");
 console.log(`element`, element);
-console.dir(element);
+// console.dir(element);
 
 element.innerText = "Hello i am div";
-// console.dir(element);
+console.dir(element);
 
 // Добавление элементов
 // append
@@ -25,7 +25,7 @@ const layout = "<h1>Heading</h1>";
 // container.innerText = layout;
 container.innerHTML = layout;
 
-// console.dir(container)
+console.dir(container)
 
 // - append - добавляет элемент в конец элемента,
 //   у коготоро был вызван метод
@@ -33,8 +33,7 @@ container.innerHTML = layout;
 // - before - добавляет элемент перед
 // - after - добавляет элемент после
 // - replaceWith - заменяет элемент
-// - appendChild - работает как append, но с некоторыми
-//   отличиями.
+// - appendChild - работает как append, но с некоторыми отличиями.
 
 // Отличия:
 // - append позволяет добавить как элемент, так и строку,
@@ -52,7 +51,7 @@ child.innerText = "New Element";
 // expamleContainer.prepend(child);
 // expamleContainer.before(child);
 // expamleContainer.after(child);
-expamleContainer.children[0].replaceWith(child);
+expamleContainer.children[2].replaceWith(child);
 
 // Удаление елементов
 // - remove()
@@ -66,7 +65,7 @@ expamleContainer.children[0].replaceWith(child);
 // expamleContainer.innerHTML = ''
 // console.log(`exampleContainer.children`, expamleContainer.children)
 // const childrenArr = Array.from(expamleContainer.children)
-const childrenArr = [...expamleContainer.children];
+// const childrenArr = [...expamleContainer.children];
 
 // childrenArr.forEach((elem) => elem.remove())
 
@@ -79,7 +78,7 @@ document.body.append(div);
 const newDiv = div.cloneNode(true);
 document.body.append(newDiv);
 
-// elem.cloneNode(deep)
+// elem.cloneNode(deep) // - (аргумент необязательный, по умолч = false)
 
 // PRACICE
 
@@ -106,33 +105,33 @@ const fruits = ["banana", "apple", "cherry", "pear"];
 //     list.innerHTML += `<li>${item}</li>`
 //   })
 
-//   // arr.forEach((item) => {
-//   //   const listItem = document.createElement('li');
-//   //   listItem.innerText = item;
+//   arr.forEach((item) => {
+//     const listItem = document.createElement('li');
+//     listItem.innerText = item;
 
-//   //   list.append(listItem);
-//   // })
+//     list.append(listItem);
+//   })
 
 //   console.dir(list);
 //   document.body.append(list)
 // }
 
 const renderList = (arr) => {
-  const list = document.createElement("ul");
+    const list = document.createElement("ul");
 
-  const listHTML = arr.map((item) => `<li>${item}</li>`).join("");
+    const listHTML = arr.map((item) => `<li>${item}</li>`).join("");
 
-  console.log(`listHTML`, listHTML);
-  list.innerHTML = listHTML;
-  // arr.forEach((item) => {
-  //   const listItem = document.createElement('li');
-  //   listItem.innerText = item;
+    //   console.log(`listHTML`, listHTML);
+    list.innerHTML = listHTML;
+    // arr.forEach((item) => {
+    //   const listItem = document.createElement('li');
+    //   listItem.innerText = item;
 
-  //   list.append(listItem);
-  // })
+    //   list.append(listItem);
+    // })
 
-  console.dir(list);
-  document.body.append(list);
+    //   console.dir(list);
+    //   document.body.append(list);
 };
 
 // renderList(fruits);
@@ -142,31 +141,33 @@ const renderList = (arr) => {
 // небольшую статью в блоге.
 // Она состоит из несколькх элементов:
 // - заголовка
-// - подзаговка
+// - подзаголовка
 // - несольких абзацев текста
 // - все элементы должны быть завернуты в контейнер
 
 // const createBlogArticle = (title, subtitle, text) => {
-//   const blogContainer = document.createElement("div");
-//   const titleElement = document.createElement("h2");
-//   const subtitleElement = document.createElement("h3");
-//   const textContainer = document.createElement("div");
+//     const blogContainer = document.createElement("div");
+//     const titleElement = document.createElement("h2");
+//     const subtitleElement = document.createElement("h3");
+//     const textContainer = document.createElement("div");
 
-//   titleElement.innerText = title;
-//   subtitleElement.innerText = subtitle;
+//     titleElement.innerText = title;
+//     subtitleElement.innerText = subtitle;
 
-//   text.forEach((paragraph) => {
-//     const paragraphElement = document.createElement("p");
-//     paragraphElement.innerText = paragraph;
+//     text.forEach((paragraph) => {
+//         const paragraphElement = document.createElement("p");
+//         paragraphElement.innerText = paragraph;
 
-//     textContainer.append(paragraphElement);
-//   });
+//         textContainer.append(paragraphElement);
+//     });
 
-//   blogContainer.append(titleElement, subtitleElement, textContainer);
-//   console.log(blogContainer);
+//     blogContainer.append(titleElement, subtitleElement, textContainer);
+//     console.log(blogContainer);
 
-//   return blogContainer;
+//     return blogContainer;
 // };
+
+// createBlogArticle(`Text`, `text`, [`a`, `b`])
 
 const createBlogArticle = (title, subtitle, text) => {
   const blogContainer = document.createElement("div");
@@ -182,10 +183,13 @@ const createBlogArticle = (title, subtitle, text) => {
   return blogContainer;
 };
 
-const blogItemElement = createBlogArticle("Hello World!", "My first article", [
-  "a",
-  "b",
-]);
+const blogItemElement = createBlogArticle(
+    "Hello World!",
+    "My first article", [
+    "a",
+    "b",
+]
+);
 document.body.append(blogItemElement);
 
 // div
