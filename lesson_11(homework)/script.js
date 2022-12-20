@@ -15,66 +15,74 @@ const products = [
         name: "MI 9",
         brand: "Xiaomi",
         price: 1300000,
-        properties: ["Best price", "Pay less - get more!"],
+        properties: ["Best price", "Pay less - get more!", "China - champion:)"],
     },
 ];
 
 
-// const productsList = (arr) => {
-//     const productCard = document.createElement('div');
-//     for (let element of arr) {
-
-//         productCard.innerHTML = `
-//         <h1>${arr.name}</h1>
-//         <h3>${arr.brand}</h3>
-//         <li>
-//         ${arr.map(element => `<li>${arr.properties}</li>`).join("")}
-//         </li>
-//         `;
-//     }
-//     document.body.append(productCard)
-    
-//     return productCard
-    
-//     console.log(productCard);
-//     // console.log(productName);
-// }
-
-// const d = productsList(products);
-// console.log(d);
-
-// // document.body.append(d)
-
-
-
-
+// Метод innerHTML
 
 const renderList = (arr) => {
     const productsList = document.createElement('div');
-     
-    arr.forEach(element => {
-        const productCard = document.createElement('div');
-        const productName = document.createElement('h1');
-        const productBrand = document.createElement('h3');
-        const propertiesList = document.createElement('ul');
-        
-        // Здесь должна быть функция для генерации Лишек
-        const propertyItem = document.createElement('li');
 
-        propertiesList.append(propertyItem);
+    const listHTML = arr
+        .map(element => `
+        <div>
+            <h1>${element.name}</h1>
+            <h2>${element.brand}</h2>
+            <h3>${element.price}</h3>
+                <ul>
+                    ${element.properties
+                        .map(property => `<li>${property}</li>`)
+                        .join('')}
+                </ul>
+        </div>`)
+        .join('');
 
-        productCard.append(productName, productBrand, propertiesList);
-        
-        productsList.append(productCard);
-        
-        productName.innerText = `${products.name}`;
-        productBrand.innerText = `${products.brand}`;
-        
-    });
-    
+    productsList.innerHTML = listHTML
+
+    console.log(listHTML);
     document.body.append(productsList)
-    console.log(productsList);
-    // console.log(productName);
 }
 
 renderList(products)
+
+
+
+
+// Метод append()
+
+// const renderList = (arr) => {
+//     const productsList = document.createElement('div');
+
+//     arr.forEach(element => {
+//         const productCard = document.createElement('div');
+//         const productName = document.createElement('h1');
+//         const productBrand = document.createElement('h2');
+//         const productPrice = document.createElement('h3');
+//         const productPropertiesList = document.createElement('ul');
+
+//         productCard.append(productName, productBrand, productPrice, productPropertiesList);
+
+//         productsList.append(productCard);
+
+//         for (let key in element) {
+//             if (typeof element[key] === 'object') {
+//                 element[key].forEach(property => {
+//                     const productProperty = document.createElement('li');
+//                     productProperty.innerText = property
+//                     productPropertiesList.append(productProperty);
+//                 })
+//             }
+//         }
+
+//         productName.innerText = element.name;
+//         productBrand.innerText = element.brand;
+//         productPrice.innerText = element.price;
+//     });
+
+//     document.body.append(productsList)
+//     console.dir(productsList);
+// }
+
+// renderList(products)
