@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+        .test {
+            border: 3px solid red;
+            width: 150px;
+            height: 100px;
+            margin: 25px;
+            padding: 10px;
+            background-color: blue;
+            color: #fff;
+            font-weight: 700;
+        }
+
+        .parent {
+            position: relative;
+            left: 500px;
+        }
+
+        .scrollable-container {
+            overflow: auto;
+            height: 300px;
+            padding: 15px;
+            margin-top: 30px;
+            border: 1px solid black;
+            width: 200px;
+        }
+
+        .relative-container {
+            position: relative;
+            width: 100px;
+            height: 100px;
+            border: 2px solid red;
+        }
+
+        .circle {
+            position: absolute;
+            top: 20px;
+            left: 10px;
+            border-radius: 50%;
+            width: 10px;
+            height: 10px;
+            background-color: blue;
+        }
+    </style>
+    <title>Size and scroll. Coordinates</title>
+</head>
+
+<body>
+    <code>
+      <pre>
+        .test {
+          border: 3px solid red;
+          height: 100px;
+          width: 150px;
+          margin: 25px;
+          padding: 10px;
+          background-color: blue;
+          color: #fff;
+          font-weight: 700;
+          
+          .parent {
+            position: relative;
+            left: 500px
+          }
+        }
+      </pre>
+    </code>
+    <div class="test">Hello World!</div>
+
+    <script src="./script.js"></script>
+</body>
+
+</html>
