@@ -5,73 +5,116 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lesson 12</title>
+
     <style>
-        .test {
-            border: 3px solid red;
-            width: 150px;
-            height: 100px;
-            margin: 25px;
-            padding: 10px;
-            background-color: blue;
-            color: #fff;
-            font-weight: 700;
-        }
+        body {
+            margin: 0;
+        }        
 
-        .parent {
+        .button {
+            display: block;         
             position: relative;
-            left: 500px;
-        }
-
-        .scrollable-container {
-            overflow: auto;
-            height: 300px;
+            width: 300px;
             padding: 15px;
-            margin-top: 30px;
-            border: 1px solid black;
-            width: 200px;
+            margin: 0 auto;
+            border: 2px solid rgb(35, 125, 167);
+            background: rgb(84, 194, 209);
+            border-radius: 10px;
+            box-shadow: 5px 5px 5px rgb(141, 160, 160);
+            color: rgb(24, 12, 78);
+            font-size: 24px;
+            font-weight: bold;
+            cursor: pointer;
         }
 
-        .relative-container {
-            position: relative;
-            width: 100px;
-            height: 100px;
-            border: 2px solid red;
+        .button:hover {            
+            box-shadow: none;
         }
 
-        .circle {
+        .tooltip {
             position: absolute;
-            top: 20px;
-            left: 10px;
-            border-radius: 50%;
-            width: 10px;
-            height: 10px;
-            background-color: blue;
+            background: rgb(233, 235, 226);
+            border-radius: 5px;
+            font-family: Verdana;
+            font-size: 18px;
+            text-align: center;
+            padding: 10px;
+            /* opacity: 0; */
+        }
+
+        .tooltip::after {
+            content: '';
+            position: absolute;
+            border-top: 15px solid rgb(233, 235, 226);
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+            top: 100%;
+            left: 45%;
+        }
+
+        .visible {
+            opacity: 1;
         }
     </style>
-    <title>Size and scroll. Coordinates</title>
 </head>
 
 <body>
-    <code>
-      <pre>
-        .test {
-          border: 3px solid red;
-          height: 100px;
-          width: 150px;
-          margin: 25px;
-          padding: 10px;
-          background-color: blue;
-          color: #fff;
-          font-weight: 700;
-          
-          .parent {
-            position: relative;
-            left: 500px
-          }
-        }
-      </pre>
-    </code>
-    <div class="test">Hello World!</div>
+    
+    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsa, dolor, velit dolores obcaecati laborum magnam
+        sapiente eligendi quis doloremque veritatis eaque quod sint porro ex blanditiis perspiciatis nihil optio
+        perferendis alias nobis amet explicabo quam sit! Quibusdam consectetur ab blanditiis!</p>
+
+    <button id="btn" class="button">Function button</button>
+
+    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsa, dolor, velit dolores obcaecati laborum magnam
+        sapiente eligendi quis doloremque veritatis eaque quod sint porro ex blanditiis perspiciatis nihil optio
+        perferendis alias nobis amet explicabo quam sit! Quibusdam consectetur ab blanditiis!</p>
+    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsa, dolor, velit dolores obcaecati laborum magnam
+        sapiente eligendi quis doloremque veritatis eaque quod sint porro ex blanditiis perspiciatis nihil optio
+        perferendis alias nobis amet explicabo quam sit! Quibusdam consectetur ab blanditiis!</p>
+    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsa, dolor, velit dolores obcaecati laborum magnam
+        sapiente eligendi quis doloremque veritatis eaque quod sint porro ex blanditiis perspiciatis nihil optio
+        perferendis alias nobis amet explicabo quam sit! Quibusdam consectetur ab blanditiis!</p>
+    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsa, dolor, velit dolores obcaecati laborum magnam
+        sapiente eligendi quis doloremque veritatis eaque quod sint porro ex blanditiis perspiciatis nihil optio
+        perferendis alias nobis amet explicabo quam sit! Quibusdam consectetur ab blanditiis!</p>
+    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsa, dolor, velit dolores obcaecati laborum magnam
+        sapiente eligendi quis doloremque veritatis eaque quod sint porro ex blanditiis perspiciatis nihil optio
+        perferendis alias nobis amet explicabo quam sit! Quibusdam consectetur ab blanditiis!</p>
+    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsa, dolor, velit dolores obcaecati laborum magnam
+        sapiente eligendi quis doloremque veritatis eaque quod sint porro ex blanditiis perspiciatis nihil optio
+        perferendis alias nobis amet explicabo quam sit! Quibusdam consectetur ab blanditiis!</p>
+    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsa, dolor, velit dolores obcaecati laborum magnam
+        sapiente eligendi quis doloremque veritatis eaque quod sint porro ex blanditiis perspiciatis nihil optio
+        perferendis alias nobis amet explicabo quam sit! Quibusdam consectetur ab blanditiis!</p>
+    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsa, dolor, velit dolores obcaecati laborum magnam
+        sapiente eligendi quis doloremque veritatis eaque quod sint porro ex blanditiis perspiciatis nihil optio
+        perferendis alias nobis amet explicabo quam sit! Quibusdam consectetur ab blanditiis!</p>
+    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsa, dolor, velit dolores obcaecati laborum magnam
+        sapiente eligendi quis doloremque veritatis eaque quod sint porro ex blanditiis perspiciatis nihil optio
+        perferendis alias nobis amet explicabo quam sit! Quibusdam consectetur ab blanditiis!</p>
+    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsa, dolor, velit dolores obcaecati laborum magnam
+        sapiente eligendi quis doloremque veritatis eaque quod sint porro ex blanditiis perspiciatis nihil optio
+        perferendis alias nobis amet explicabo quam sit! Quibusdam consectetur ab blanditiis!</p>
+    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsa, dolor, velit dolores obcaecati laborum magnam
+        sapiente eligendi quis doloremque veritatis eaque quod sint porro ex blanditiis perspiciatis nihil optio
+        perferendis alias nobis amet explicabo quam sit! Quibusdam consectetur ab blanditiis!</p>
+    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsa, dolor, velit dolores obcaecati laborum magnam
+        sapiente eligendi quis doloremque veritatis eaque quod sint porro ex blanditiis perspiciatis nihil optio
+        perferendis alias nobis amet explicabo quam sit! Quibusdam consectetur ab blanditiis!</p>
+    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsa, dolor, velit dolores obcaecati laborum magnam
+        sapiente eligendi quis doloremque veritatis eaque quod sint porro ex blanditiis perspiciatis nihil optio
+        perferendis alias nobis amet explicabo quam sit! Quibusdam consectetur ab blanditiis!</p>
+    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsa, dolor, velit dolores obcaecati laborum magnam
+        sapiente eligendi quis doloremque veritatis eaque quod sint porro ex blanditiis perspiciatis nihil optio
+        perferendis alias nobis amet explicabo quam sit! Quibusdam consectetur ab blanditiis!</p>
+    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsa, dolor, velit dolores obcaecati laborum magnam
+        sapiente eligendi quis doloremque veritatis eaque quod sint porro ex blanditiis perspiciatis nihil optio
+        perferendis alias nobis amet explicabo quam sit! Quibusdam consectetur ab blanditiis!</p>
+    
+
+
 
     <script src="./script.js"></script>
 </body>
