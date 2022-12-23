@@ -1,6 +1,7 @@
-const createTooltip = (targetElement, tooltipText) => {
+const createTooltip = (element, tooltipText) => {
     
-    targetElement = document.getElementById('btn');
+    targetElement = document.querySelector(`${element}`)
+    // targetElement = document.getElementById(`${element}`);
     const targetCoords = targetElement.getBoundingClientRect();
 
     tooltipElem = document.createElement('div');
