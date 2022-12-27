@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lesson 12</title>
+
+    <style>
+        body {
+            margin: 0 auto;
+            max-width: 1000px;
+        }
+
+        /* .carousel {
+            box-shadow: 1px 1 px 2px 2px rgb(141, 160, 160);
+        } */
+        
+        .gallery {
+            display: block;
+            max-width: 820px;
+            height: 500px;
+            border: 2px solid rgb(35, 125, 167);
+            border-radius: 20px;
+            text-align: center;
+            margin: 0 auto;
+            margin-bottom: 20px;
+        }
+
+        .img {
+            /* opacity: 0; */
+            display: none;
+        }
+
+        .button {
+            display: block;
+            position: relative;
+            width: 300px;
+            padding: 15px;
+            margin: 0 auto;
+            border: 2px solid rgb(35, 125, 167);
+            background: rgb(84, 194, 209);
+            border-radius: 10px;
+            box-shadow: 5px 5px 5px rgb(141, 160, 160);
+            color: rgb(24, 12, 78);
+            font-size: 24px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .button:hover {
+            box-shadow: none;
+        }
+
+        .buttons {
+            display: flex;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="carousel">
+
+        <div class="gallery">
+            <img class="img" src="./img/Priroda_1.jpg" alt="img1">
+            <img class="img" src="./img/Priroda_2.jpg" alt="img2">
+            <img class="img" src="./img/Priroda_3.jpg" alt="img3">
+            <img class="img" src="./img/Priroda_4.jpg" alt="img4">
+            <img class="img" src="./img/Priroda_5.jpg" alt="img5">
+        </div>
+
+        <div class="buttons">
+            <button id="btn_prev" class="button">Prev</button>
+            <button id="btn_next" class="button">Next</button>
+        </div>
+
+    </div>
+    <script src="/script.js"></script>
+</body>
+
+</html>
