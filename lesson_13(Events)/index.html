@@ -13,28 +13,25 @@
             max-width: 1000px;
         }
 
-        .gallery {
+        .slider {
             display: flex;
             max-width: 800px;
             padding: 10px;
             border: 2px solid rgb(35, 125, 167);
-            border-radius: 10px;
+            border-radius: 5px;
             margin: 0 auto 20px;
-        }
-
-        .img:not(:first-of-type) {
-            display: none;
         }
 
         .buttons {
             display: flex;
-            justify-content: space-evenly;
+            justify-content: center;
         }
 
         .button {
-            width: 300px;
+            display: block;
+            width: 100px;
             padding: 15px;
-            margin: 0 auto;
+            margin: 0 20px;
             border: 2px solid rgb(35, 125, 167);
             background: rgb(84, 194, 209);
             border-radius: 10px;
@@ -43,7 +40,7 @@
             font-size: 24px;
             font-weight: bold;
             cursor: pointer;
-        }
+        }        
 
         .button:hover {
             box-shadow: none;
@@ -53,12 +50,12 @@
 
 <body>
 
-    <div class="gallery">
-        <img class="img" src="./img/Priroda_1.jpg" alt="img1">
-        <img class="img" src="./img/Priroda_2.jpg" alt="img2">
-        <img class="img" src="./img/Priroda_3.jpg" alt="img3">
-        <img class="img" src="./img/Priroda_4.jpg" alt="img4">
-        <img class="img" src="./img/Priroda_5.jpg" alt="img5">
+    <div class="slider">
+        <img src="./img/Priroda_1.jpg" alt="img1">
+        <img src="./img/Priroda_2.jpg" alt="img2">
+        <img src="./img/Priroda_3.jpg" alt="img3">
+        <img src="./img/Priroda_4.jpg" alt="img4">
+        <img src="./img/Priroda_5.jpg" alt="img5">
     </div>
 
     <div class="buttons">
