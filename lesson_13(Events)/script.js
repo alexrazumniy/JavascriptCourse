@@ -1,23 +1,21 @@
 const buttonNext = document.getElementById('btn_next');
 const buttonPrev = document.getElementById('btn_prev');
-
 const imageGallery = [...document.querySelectorAll('img')];
-let currentImage = []
-
 
 let i = 1;
 let j = 0;
+let counter;
 
 const showNextImage = (event) => {
     for (let img of imageGallery) {
         imageGallery[i].style.display = 'block';
     }
-    i ++
+    counter = i ++
 
     for (let img of imageGallery) {
         imageGallery[j].style.display = 'none';
     }
-    j ++
+    counter = j ++
 
     if (i === imageGallery.length) {
         i = 0
@@ -26,6 +24,8 @@ const showNextImage = (event) => {
     if (j === imageGallery.length) {
         j = i - 1
     }
+    console.log(`counter`, counter);
+    return counter
 }
 
 buttonNext.addEventListener('click', showNextImage)
@@ -34,19 +34,19 @@ const showPrevImage = (event) => {
     for (let img of imageGallery) {
         imageGallery[i].style.display = 'block';
     }
-    i ++
+    counter = imageGallery.length --
 
     for (let img of imageGallery) {
         imageGallery[j].style.display = 'none';
     }
-    j ++
+    counter = imageGallery.length --
 
-    if (i === imageGallery.length) {
-        i = 0
+    if (i === 0) {
+        i = imageGallery.length
     }
 
     if (j === imageGallery.length) {
-        j = i - 1
+        j = i + 1
     }
 }
 
