@@ -1,6 +1,6 @@
 const buttonNext = document.getElementById('btn_next');
 const buttonPrev = document.getElementById('btn_prev');
-const imageGallery = [...document.querySelectorAll('img')];
+const imageGallery = [...document.getElementsByTagName('img')];
 
 let currentImageIndex = 0;
 
