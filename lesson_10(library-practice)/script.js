@@ -127,6 +127,7 @@ const addMyBook = () => {
 
     const newBook = {
         id: generateBookId(),
+        // id: books.length + 1, // добавление id по порядковому номеру
         author,
         name,
         amount,
