@@ -102,20 +102,28 @@ const returnBook = () => {
 
 const addMyBook = () => {
 
-    const name = prompt(`Введите название книги, которую хотите добавить в библиотеку`);
-    const author = prompt(`Введите автора книги, которую хотите добавить в библиотеку`);
+    let name = prompt(`Введите название книги, которую хотите добавить в библиотеку`);
+    let author = prompt(`Введите автора книги, которую хотите добавить в библиотеку`);
+    let amount = +prompt(`Сколько экземпляров книги вы хотите добавить в библиотеку?`)
 
-    // Проверка несовпадения названия книги и автора с существующими в базе - ДОРАБОТАТЬ ЗАГЛАВНЫЕ!
-    const invalidName = books.find(book => book.name === name && book.author === author);
-    
-    if (invalidName) {
-        alert(`Спасибо конечно, но такая книга у нас уже есть. Приносите что-нибудь другое:)`);
+    if (!amount || typeof amount !== 'number') {
+        alert(`Введенное значение количества книг некорректно! Пожалуйста введите число`);
 
         return;
     }
-
-    // Только после этого спрашиваем сколько экземпляров собирается добавить пользователь
-    const amount = +prompt(`Сколько экземпляров книги вы хотите добавить в библиотеку?`)
+    
+    // Проверка несовпадения названия книги и автора с существующими в базе
+    
+    const invalidName = books.find(book => book.name.trim().toLowerCase() === name.trim().toLowerCase() && book.author.trim().toLowerCase() === author.trim().toLowerCase());
+    
+    if (invalidName) {
+        alert(`Спасибо конечно, но такая книга у нас уже есть. Приносите что-нибудь другое:)`);
+        
+        return;
+    }
+    
+    name = name.trim().slice(0, 1).toUpperCase() + name.trim().slice(1);
+    author = author.trim().slice(0, 1).toUpperCase() + author.trim().slice(1).toLowerCase();
 
     const newBook = {
         id: generateBookId(),
