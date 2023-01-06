@@ -103,7 +103,21 @@ const returnBook = () => {
 const addMyBook = () => {
 
     let name = prompt(`Введите название книги, которую хотите добавить в библиотеку`);
+
+    if (!name || name === '') {
+        alert(`Вы не ввели название книги!`);
+
+        return;
+    }
+
     let author = prompt(`Введите автора книги, которую хотите добавить в библиотеку`);
+
+    if (!author || author === '') {
+        alert(`Вы не ввели автора книги!`);
+
+        return;
+    }
+
     let amount = +prompt(`Сколько экземпляров книги вы хотите добавить в библиотеку?`)
 
     if (!amount || typeof amount !== 'number') {
@@ -111,32 +125,39 @@ const addMyBook = () => {
 
         return;
     }
-    
+
     // Проверка несовпадения названия книги и автора с существующими в базе
-    
+
     const invalidName = books.find(book => book.name.trim().toLowerCase() === name.trim().toLowerCase() && book.author.trim().toLowerCase() === author.trim().toLowerCase());
-    
+
     if (invalidName) {
         alert(`Спасибо конечно, но такая книга у нас уже есть. Приносите что-нибудь другое:)`);
-        
-        return;
+
+    // Добавление книг в базу в случае совпадения с уже существующими (не работает!!! не добавляет кол-во)
+
+    // const existingBookName = books.find(book => book.name.trim().toLowerCase() === name.trim().toLowerCase() && book.author.trim().toLowerCase() === author.trim().toLowerCase());
+
+    // if (existingBookName) {
+    //     books.amount = amount + books.amount;
+    //     alert(`Спасибо, дополнительно добавлено ${amount} книг в библиотеку`);
+
+    } else {
+        name = name.trim().slice(0, 1).toUpperCase() + name.trim().slice(1);
+        author = author.trim().slice(0, 1).toUpperCase() + author.trim().slice(1).toLowerCase();
+
+        const newBook = {
+            id: generateBookId(),
+            // id: books.length + 1, // добавление id по порядковому номеру
+            author,
+            name,
+            amount,
+        }
+
+        console.log(newBook);
+        books.push(newBook);
+
+        alert(`Спасибо, книга добавлена в библиотеку! ID книги ${newBook.id}?`);
     }
-    
-    name = name.trim().slice(0, 1).toUpperCase() + name.trim().slice(1);
-    author = author.trim().slice(0, 1).toUpperCase() + author.trim().slice(1).toLowerCase();
-
-    const newBook = {
-        id: generateBookId(),
-        // id: books.length + 1, // добавление id по порядковому номеру
-        author,
-        name,
-        amount,
-    }
-
-    console.log(newBook);
-    books.push(newBook);
-
-    alert(`Спасибо, книга добавлена в библиотеку! ID книги ${newBook.id}?`);
 }
 
 function generateBookId() {
