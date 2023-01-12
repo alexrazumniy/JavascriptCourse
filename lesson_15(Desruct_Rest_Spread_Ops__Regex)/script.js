@@ -31,29 +31,17 @@ const response = {
     },
 };
 
-// == 1 == (total, из объекта paging, который вложен в объект meta)
 const {
     meta: {
         paging: { total }
-    }
+    },
+    data: [
+        { is_active: isActive }
+    ],
 } = response;
-console.log(total); // 14
 
-
-// == 2 == (значение is_active, которое принадлежит первому объекту в массиве data. Переименуйте переменную в isActive.)
-
-const { data } = response;
-console.log(data);
-
-const userData = data[0];
-console.log(userData);
-
-const { is_active } = userData;
-console.log(`is_active`, is_active); // true
-
-const { is_active: isActive } = userData;
-console.log(`isActive`, isActive); // true
-console.log(userData); // ??? "is_active" в консоли не переименовывается в "isActive" !!!
+console.log(`total`, total);
+console.log(`isActive`, isActive);
 
 
 // ===============
@@ -68,7 +56,7 @@ const user = {
 };
 
 const { name, surname, ...restParameters } = user
-console.log(name, surname, `restParameters=`,restParameters);
+console.log(name, surname, `restParameters=`, restParameters);
 
 
 // ===============
@@ -93,7 +81,7 @@ console.log(res); // 30
 // == ЗАДАНИЕ 4 ==
 // ===============
 
-const createMessage = ({ author = "Guest", text, reciever, time = new Date()}) => {
+const createMessage = ({ author = "Guest", text, reciever, time = new Date() }) => {
     return `From ${author} to ${reciever}: ${text} (${time.toLocaleDateString()})`;
 };
 
