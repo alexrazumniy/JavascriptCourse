@@ -55,18 +55,6 @@ console.log(userData); // ??? В консоли не переименовыва�
 console.log(`isActive`, isActive); // true
 
 
-// const {
-//     meta: {...restPaging},
-
-//     data: [
-//         {is_active: isActive}
-//     ]
-// } = response;
-
-// console.log(`restPaging`, restPaging);
-// console.log(`isActive`, isActive);
-
-
 // ===============
 // == ЗАДАНИЕ 2 ==
 // ===============
@@ -120,7 +108,7 @@ console.log(message); // From Guest to John: Hi! (10.01.2023)
 // == ЗАДАНИЕ 5 ==
 // ===============
 
-// 5.1
+// == 5.1 ==
 
 const str1 = "x1y 722a 333 a123v1n a55555a qwe1 1zxc";
 const regexp1 = /\w\d+\w/gi;
@@ -128,14 +116,14 @@ const regexp1 = /\w\d+\w/gi;
 console.log(`matches in regexp1`, str1.match(regexp1)); // [ 'x1y', '722a', '333', 'a123v', 'a55555a' ]
 
 
-// 5.2
+// == 5.2 ==
 
 const regexp2 = /([\w._-]+).([\w]{2,})/gi;
 
 console.log(`test regexp2`, regexp2.test("ex.ua, google.com, yandex.ru, site.com.ua, my-page.com"));
 
 
-// 5.3
+// == 5.3 ==
 
 regexp3 = /\d{12,}$/gi;
 
