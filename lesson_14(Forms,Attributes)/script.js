@@ -30,79 +30,105 @@ const formConfig = [
     },
 ];
 
+const handleSubmit = (event) => {
+    event.preventDefault()
 
-const renderForm = (arr) => {
-    const form = document.createElement('form');
-    
-    arr.map(element => {
-        const inputField = document.createElement('div');
-        const labelName = document.createElement('label');
-        const inputName = document.createElement('input');
-        const optionsSelector = document.createElement('select');
-        const optionsList = document.createElement('option');
+    const formData = new FormData(form);
+    const data = {};
 
-        inputField.append(labelName, inputName);
-        form.append(inputField);
+    for (let pair of formData.entries()) {
+        console.log(pair);
 
-        labelName.innerHTML = arr.element;
+        data[pair[0]] = pair[1]
+    }
 
-        // const p = labelName.innerText
-        // console.log(p);
-                
-        if (typeof element.key === 'object') {
-            optionsSelector.append(optionsList);
-            form.append(optionsSelector);
-            optionsList.innerText = option;
-        }
-        
-        // inputName.innerText = arr.name;
-
-        // inputField.style.display = 'flex'
-        labelName.style.fontFamily = 'arial'
-        inputName.style.width = '300px'
-        inputName.style.height = '30px'
-        inputName.style.marginLeft = '30px'
-        inputName.style.marginBottom = '30px'
-        labelName.setAttribute('for', `${arr}`)
-    });
-    
-    const handleSubmit = document.createElement('button');
-    handleSubmit.innerText = `Подтвердить`;
-    form.append(handleSubmit);
-    
-    // const input = [document.querySelectorAll('input')];
-    // input.style.width = '170px';
-    
-    document.body.append(form)
-    console.dir(form);
+    console.log(data);
 }
 
-renderForm(formConfig)
 
+const createInput = (inputData) => {
+    const input = document.createElement('input');
+    input.setAttribute('type', 'text');
+    input.setAttribute('id', inputData.name);
+    input.setAttribute('name', inputData.name);
 
-// const renderForm = (arr) => {
-//     const form = document.createElement('form');
+    input.style.width = '300px'; // Стилизация инпута
+    input.style.height = '30px';
+    input.style.marginLeft = '30px';
+    input.style.paddingLeft = '10px';
+    input.style.borderRadius = '5px';
+    input.style.borderWidth = '1px';
+    input.style.background = 'rgb(200, 220, 220)';
 
-//     form.innerHTML = `
-//         ${arr
-//             .map(item => `
-//         <div>
-//         <label>${arr.label}</label>
-//         <input ${arr.name}/>
-//         </div>
-//             `)
-//             .join('')
-//         }
-//         <button>Подтвердить</button>
-//         `;
-        
-//         document.body.append(form)
-//         console.log(arr);
-//     }
+    return input
+}
+
+const createSelect = (selectData) => {
+    const select = document.createElement('select');
+    select.setAttribute('id', selectData.name);
+    select.setAttribute('name', selectData.name);
+
+    selectData.options.forEach(opt => {
+        const option = document.createElement('option');
+        option.setAttribute('value', opt.value);
+        option.innerText = opt.text;
+
+        select.append(option)
+    })
+
+    return select
+}
+
+const createForm = (arrFormData) => {
+    const form = document.createElement('form');
+
+    arrFormData.forEach(formElement => {
+        const divWrap = document.createElement('div');
+        const label = document.createElement('label');
+        label.setAttribute('for', formElement.label);
+        label.innerText = formElement.label;
+
+        if (formElement.element === 'text') {
+            const input = createInput(formElement)
+            divWrap.append(label, input)
+        } else if (formElement.element === 'select') {
+            const select = createSelect(formElement);
+            divWrap.append(label, select);
+            select.style.marginLeft = '25px';
+        }
+
+        divWrap.style.display = 'flex'; // Стилизация div
+        divWrap.style.alignItems = 'center';
+        divWrap.style.marginBottom = '30px';
+        label.style.display = 'block';
+        label.style.textAlign = 'right';
+        label.style.width = '180px';
+        label.style.fontFamily = 'arial';
+
+        form.append(divWrap)
+    })
+
+    const buttonSubmit = document.createElement('button');
+    buttonSubmit.setAttribute('type', 'submit');
+    buttonSubmit.innerText = `Подтвердить`;
+
+    buttonSubmit.style.width = '150px'; // Стилизация кнопки
+    buttonSubmit.style.height = '30px';
+    buttonSubmit.style.borderRadius = '5px';
+    buttonSubmit.style.borderWidth = '1px';
+    buttonSubmit.style.background = 'rgb(220, 240, 200)';
+    buttonSubmit.style.display = 'block';
+    buttonSubmit.style.margin = '75px 0 0 240px';
     
-//     renderForm(formConfig)
+    form.append(buttonSubmit);
+    
+    const container = document.querySelector('.container');
+    form.style.width = '450px'
 
+    container.append(form);
 
-//     const divExample = document.querySelectorAll('input');
+    return form
+}
 
-
+let form = createForm(formConfig);
+form.addEventListener('submit', handleSubmit);
