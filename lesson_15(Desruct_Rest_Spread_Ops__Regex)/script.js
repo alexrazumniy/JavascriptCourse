@@ -31,15 +31,16 @@ const response = {
     },
 };
 
-
+// == 1 == (total, из объекта paging, который вложен в объект meta)
 const {
     meta: {
         paging: { total }
     }
 } = response;
-
 console.log(total); // 14
 
+
+// == 2 == (значение is_active, которое принадлежит первому объекту в массиве data. Переименуйте переменную в isActive.)
 
 const { data } = response;
 console.log(data);
@@ -51,8 +52,8 @@ const { is_active } = userData;
 console.log(`is_active`, is_active); // true
 
 const { is_active: isActive } = userData;
-console.log(userData); // ??? В консоли не переименовывается !!!
 console.log(`isActive`, isActive); // true
+console.log(userData); // ??? "is_active" в консоли не переименовывается в "isActive" !!!
 
 
 // ===============
@@ -67,7 +68,7 @@ const user = {
 };
 
 const { name, surname, ...restParameters } = user
-console.log(name, surname, restParameters);
+console.log(name, surname, `restParameters=`,restParameters);
 
 
 // ===============
