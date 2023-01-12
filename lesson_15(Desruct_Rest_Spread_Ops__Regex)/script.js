@@ -51,7 +51,7 @@ const { is_active } = userData;
 console.log(`is_active`, is_active); // true
 
 const { is_active: isActive } = userData;
-console.log(userData); // ??? Не переименовывается !!!
+console.log(userData); // ??? В консоли не переименовывается !!!
 console.log(`isActive`, isActive); // true
 
 
@@ -122,17 +122,23 @@ console.log(message); // From Guest to John: Hi! (10.01.2023)
 
 // 5.1
 
-let str1 = "x1y 722a 333 a123v1n a55555a qwe1 1zxc";
-let regexp1 = /\w\d+\w/gi;
+const str1 = "x1y 722a 333 a123v1n a55555a qwe1 1zxc";
+const regexp1 = /\w\d+\w/gi;
 
-let matches = str1.match(regexp1);
+console.log(`matches in regexp1`, str1.match(regexp1)); // [ 'x1y', '722a', '333', 'a123v', 'a55555a' ]
 
-console.log(`matches`, matches); // [ 'x1y', '722a', '333', 'a123v', 'a55555a' ]
 
 // 5.2
 
-let str2 = "ex.ua, google.com, yandex.ru, site.com.ua, my-page.com";
-let regexp2 = /\w+\d+\w/gi;
+const regexp2 = /([\w._-]+).([\w]{2,})/gi;
 
-console.log(`matches`, str2.test(regexp2));
+console.log(`test regexp2`, regexp2.test("ex.ua, google.com, yandex.ru, site.com.ua, my-page.com"));
+
+
+// 5.3
+
+regexp3 = /\d{12,}$/gi;
+
+console.log(`test regexp3`, regexp3.test("123456789101")); // true
+console.log(`test regexp3`, regexp3.test("123456789101s")); // false
 
