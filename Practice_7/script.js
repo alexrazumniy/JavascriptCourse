@@ -85,7 +85,6 @@ const loopFactorial = (n) => {
         // result = result * (n - i);
         result *= n - i;
     }
-
     return result
 }
 
@@ -98,7 +97,6 @@ const recursiveFactorial = (n) => {
     if (n === 1) { // это БАЗА РЕКУРСИИ или УСЛОВИЕ ВЫХОДА ИЗ РЕКУРСИИ
         return n;
     }
-
     return n * recursiveFactorial(n - 1);
 };
 
@@ -123,7 +121,6 @@ const makeDeepClone = (obj) => {
             clone[key] = makeDeepClone(obj[key]);
         }
     }
-
     return clone;
 }
 
