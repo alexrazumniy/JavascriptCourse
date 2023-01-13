@@ -33,13 +33,13 @@ const formConfig = [
 const handleSubmit = (event) => {
     event.preventDefault()
 
-    const formData = new FormData(form);
+    const formData = new FormData(event.target);
     const data = {};
 
     for (let pair of formData.entries()) {
-        console.log(pair);
-
         data[pair[0]] = pair[1]
+        
+        console.log(pair);
     }
 
     console.log(data);
@@ -73,7 +73,7 @@ const createSelect = (selectData) => {
         option.setAttribute('value', opt.value);
         option.innerText = opt.text;
 
-        select.append(option)
+        select.append(option);
     })
 
     return select
@@ -83,29 +83,29 @@ const createForm = (arrFormData) => {
     const form = document.createElement('form');
 
     arrFormData.forEach(formElement => {
-        const divWrap = document.createElement('div');
+        const wrapper = document.createElement('div');
         const label = document.createElement('label');
         label.setAttribute('for', formElement.label);
         label.innerText = formElement.label;
 
         if (formElement.element === 'text') {
             const input = createInput(formElement)
-            divWrap.append(label, input)
+            wrapper.append(label, input)
         } else if (formElement.element === 'select') {
             const select = createSelect(formElement);
-            divWrap.append(label, select);
+            wrapper.append(label, select);
             select.style.marginLeft = '25px';
         }
 
-        divWrap.style.display = 'flex'; // Стилизация div
-        divWrap.style.alignItems = 'center';
-        divWrap.style.marginBottom = '30px';
+        wrapper.style.display = 'flex'; // Стилизация div
+        wrapper.style.alignItems = 'center';
+        wrapper.style.marginBottom = '30px';
         label.style.display = 'block';
         label.style.textAlign = 'right';
         label.style.width = '180px';
         label.style.fontFamily = 'arial';
 
-        form.append(divWrap)
+        form.append(wrapper);
     })
 
     const buttonSubmit = document.createElement('button');
@@ -119,9 +119,9 @@ const createForm = (arrFormData) => {
     buttonSubmit.style.background = 'rgb(220, 240, 200)';
     buttonSubmit.style.display = 'block';
     buttonSubmit.style.margin = '75px 0 0 240px';
-    
+
     form.append(buttonSubmit);
-    
+
     const container = document.querySelector('.container');
     form.style.width = '450px'
 
@@ -130,5 +130,5 @@ const createForm = (arrFormData) => {
     return form
 }
 
-let form = createForm(formConfig);
+const form = createForm(formConfig);
 form.addEventListener('submit', handleSubmit);
