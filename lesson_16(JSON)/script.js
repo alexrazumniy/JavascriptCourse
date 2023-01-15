@@ -11,6 +11,7 @@ renderGreeting()
 const updateVisitsCount = () => {
     let visits = [JSON.parse(localStorage.getItem("visitsCount"))];
     // console.log(visits);
+    
     for (n of visits) {
         visits ++;
         localStorage.setItem("visitsCount", JSON.stringify(visits));
