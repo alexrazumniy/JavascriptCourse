@@ -5,35 +5,24 @@ const renderGreeting = () => {
 
     document.body.append(greeting);
 };
+renderGreeting()
 
-let visitCounter;
 
-const updateLocalStorage = (visitCounter) => {
-    localStorage.setItem("counter", JSON.stringify(visitCounter));
+const updateVisitsCount = () => {
+    let visits = [JSON.parse(localStorage.getItem("visitsCount"))];
+    // console.log(visits);
+    for (n of visits) {
+        visits ++;
+        localStorage.setItem("visitsCount", JSON.stringify(visits));
+    }
+        if (n > 0) {
+        const isVisited = document.createElement("h1"); // При втором посещении создаем блок "Вы заходили раз..."
+        document.body.append(isVisited);
+        isVisited.innerText = `Вы заходили раз: ${visits}`;
+        isVisited.style.textAlign = 'center'
+        }
 };
 
-// const handleSubmit = (event) => {
-//     event.preventDefault();
+updateVisitsCount()
 
-//     const { value: name } = nameInput;
-//     const { value: email } = emailInput;
-
-//     updateLocalStorage({ name, email });
-
-//     renderGreeting(name);
-// }
-
-
-const init = () => {
-    if (localStorage.getItem(visitCounter)) {
-        JSON.parse(localStorage.getItem(visitCounter));
-        greeting.innerText = `Вы заходили раз: ${visitCounter ++}`;
-    } 
-    renderGreeting()
-};
-
-init();
-
-// localStorage.removeItem(USER_LOCALSTORAGE_KEY)
-
-
+// localStorage.removeItem("visitsCount")
