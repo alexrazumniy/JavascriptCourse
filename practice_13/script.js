@@ -26,13 +26,21 @@ const hole = document.getElementById("hole");
 const moveAt = (event, x, y) => {
   const currentBall = event.target;
 
-  currentBall.style.left = `${event.clientX - x}px`;
+  currentBall.style.left = `${event.clientX - 1.3 * x}px`;
   currentBall.style.top = `${event.clientY - y}px`;
 };
 
 const isMatchingWithBallCoords = (ball) => {
   const ballCoords = ball.getBoundingClientRect();
   const holeCoords = hole.getBoundingClientRect();
+  // console.log(`ball top`, ballCoords.top);
+  // console.log(`hole top`, holeCoords.top);
+  // console.log(`ball bottom`, ballCoords.bottom);
+  // console.log(`hole bottom`, holeCoords.bottom);
+  // console.log(`ball left`, ballCoords.left);
+  // console.log(`hole left`, holeCoords.left);
+  // console.log(`ball right`, ballCoords.right);
+  // console.log(`hole right`, holeCoords.right);
 
   return (
     ballCoords.top > holeCoords.top &&
@@ -40,6 +48,7 @@ const isMatchingWithBallCoords = (ball) => {
     ballCoords.left > holeCoords.left &&
     ballCoords.right < holeCoords.right
   );
+
 };
 
 const onDragMove = (event) => {
@@ -99,3 +108,7 @@ const createBalls = () => {
 };
 
 createBalls();
+
+
+
+
