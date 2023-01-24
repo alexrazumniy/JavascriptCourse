@@ -10,6 +10,7 @@ const timerHours = document.querySelector('.hours');
 const timerMinutes = document.querySelector('.minutes');
 const timerSeconds = document.querySelector('.seconds');
 
+let timeout = null;
 let intervalID = null;
 let isActive = false;
 
@@ -39,7 +40,7 @@ const handleSubmit = (event) => {
         return
     }
     getTimeLeft(time);
-    intervalID = time;
+    timeout = time;
     timerInput.value = "" // Очищаем инпут после запуска таймера
 }
 form.addEventListener("submit", handleSubmit);
@@ -67,37 +68,44 @@ const getTimeLeft = (secondsLeft) => {
     createTimer(hours, minutes, seconds);
 }
 
-
+// Запуск таймера
 const startTimer = () => {
-
     isActive = true;
 
-    getTimeLeft(intervalID);
-    const time = setInterval(startTimer, 1000);
-    intervalID--;
-
-    // if (!intervalID) {
-    //     const time = setInterval(startTimer, 1000);
-    //     intervalID--
-    // }
-    // console.log(intervalID);
-
-    if (intervalID < -1) {
-        clearInterval(intervalID);
-        intervalID = null;
-        alert("Время вышло!");
-        return
-    } else return
-
-}
-startButton.addEventListener("click", startTimer);
-
-
-const stopTimer = () => {
     return new Promise((resolve) => {
-        setTimeout(() => {
-          resolve()
-        }, delay)
-      })
+        intervalID = setInterval(() => {
+            timeout--
+            console.log(timeout);
+
+            if (timeout <= 0) {
+                isActive = false;
+                clearInterval(intervalID);
+                intervalID = null;
+                resolve();
+            }
+            const time = getTimeLeft(timeout);
+        }, 1000)
+    })
 }
-pauseButton.addEventListener("click", stopTimer);
+
+startButton.addEventListener("click", () => {
+    if (isActive) {
+        return
+    }
+
+    startTimer().then(() => {
+        alert('Timer end')
+    })
+});
+
+// Так як функція таймера буде повертати проміс кожен раз коли викликана поки часу не залишиться 0, то нам треба розрезолвити проміси «доверху», тому також у виклик самої себе функції таймеру в сет таймауті треба дописати зен, та у ньому резолв
+
+
+// Пауза таймера
+pauseButton.addEventListener("click", () => {
+
+    if (intervalID) {
+        clearInterval(intervalID);
+    }
+
+})
