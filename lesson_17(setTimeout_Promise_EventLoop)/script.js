@@ -25,18 +25,21 @@ const handleSubmit = (event) => {
     if (time <= 0) {
         isTimeValid = false;
         errorMessage.innerText = "Значение должно быть положительное от 1 до 3600";
+        timerInput.value = "" // Очищаем инпут
         return
     }
 
     if (time > 3600) {
         isTimeValid = false;
         errorMessage.innerText = "Значение должно быть от 1 до 3600";
+        timerInput.value = "" // Очищаем инпут
         return
     }
 
     if (!time) {
         isTimeValid = false;
         errorMessage.innerText = "Введите корректное значение от 1 до 3600";
+        timerInput.value = "" // Очищаем инпут
         return
     }
     getTimeLeft(time);
