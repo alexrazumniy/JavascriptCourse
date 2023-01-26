@@ -45,12 +45,10 @@ const handleSubmit = (event) => {
 }
 form.addEventListener("submit", handleSubmit);
 
-// Корректировка 0 -> 00
 const formatTime = (timerItem) => {
     return String(timerItem).length < 2 ? `0${timerItem}` : timerItem;
 }
 
-// Создание и появление таймера
 const createTimer = (hours, minutes, seconds) => {
     timerWrapper.classList.remove("hidden");
 
@@ -59,7 +57,6 @@ const createTimer = (hours, minutes, seconds) => {
     timerSeconds.innerText = `${formatTime(seconds)}`;
 }
 
-// Перевод введенных секунд в часы, минуты, секунды
 const getTimeLeft = (secondsLeft) => {
     const hours = Math.floor(secondsLeft / 3600);
     const minutes = Math.floor((secondsLeft - hours * 3600) / 60);
@@ -68,7 +65,6 @@ const getTimeLeft = (secondsLeft) => {
     createTimer(hours, minutes, seconds);
 }
 
-// Запуск таймера
 const startTimer = () => {
     isActive = true;
 
@@ -78,8 +74,8 @@ const startTimer = () => {
             console.log(timeout);
 
             if (timeout <= 0) {
-                isActive = false;
                 clearInterval(intervalID);
+                isActive = false;
                 intervalID = null;
                 resolve();
             }
@@ -98,11 +94,12 @@ startButton.addEventListener("click", () => {
     })
 });
 
-// Пауза таймера
 pauseButton.addEventListener("click", () => {
-
-    if (intervalID) {
+    if (isActive) {
         clearInterval(intervalID);
+        isActive = false;
+    } else {
+        startTimer();
+        isActive = true;
     }
-
 })
