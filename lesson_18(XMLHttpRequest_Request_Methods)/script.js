@@ -1,12 +1,13 @@
 const renderPostlist = (postList) => {
-  for (let item of postList) {
+  // const posts = postList.map(post => {
+  for (let post of postList) {
     const postContainer = document.createElement("div");
     const titleElem = document.createElement("h2");
     const bodyElem = document.createElement("p");
     const button = document.createElement("button");
 
-    titleElem.innerText = item.title;
-    bodyElem.innerText = item.body;
+    titleElem.innerText = post.title;
+    bodyElem.innerText = post.body;
     button.innerText = "Show comments";
 
     postContainer.append(titleElem, bodyElem, button);
@@ -26,19 +27,18 @@ const renderPostlist = (postList) => {
     button.style.border = '2px solid';
     button.style.borderRadius = '5px';
 
+    let postsId = post.id
+
     button.addEventListener("click", () => {
       if (button.innerText === "Show comments") {
         button.innerText = "Hide comments";
-        getComments(postId, postContainer);
-
+        getComments(postsId, postContainer);
       } else if (button.innerText === "Hide comments") {
         button.innerText = "Show comments";
-        // parent.lastElementChild = 'none'
-        // parent.lastElementChild.style.display = 'none'
-        // hideComments()
+        hideComments()
       }
     });
-  }
+  };
 };
 
 const BASE_URL = "https://jsonplaceholder.typicode.com";
@@ -55,6 +55,7 @@ const getPostlist = () => {
       if (status === 200 || status === 201) {
         resolve();
         renderPostlist(postList);
+        console.log(postList);
       } else {
         reject({
           status,
@@ -65,12 +66,13 @@ const getPostlist = () => {
     postXhr.onerror = () => {
       reject({});
       const titleElem = document.createElement("h3");
-      titleElem.innerText = 'Unable to load data from server!';
+      titleElem.innerText = `Unable to load data from server!`;
       document.body.append(titleElem);
     };
   })
 }
 getPostlist()
+
 
 const getComments = (postId, container) => {
   const commentsXhr = new XMLHttpRequest();
@@ -81,25 +83,27 @@ const getComments = (postId, container) => {
 
   commentsXhr.onload = () => {
     const { response: comments } = commentsXhr;
-    console.log(`comments`, comments);
 
     for (let item of comments) {
       const commentsElem = document.createElement("div");
       const commentsText = document.createElement("p");
+
+      commentsElem.className = 'comments'
       commentsElem.append(commentsText);
       commentsElem.style.width = '850px';
+
       commentsText.innerText = item.body;
-      commentsText.style.borderBottom = '2px solid grey'
+      commentsText.style.borderBottom = '2px solid grey';
       container.append(commentsElem);
-      document.body.style.fontFamily = 'Arial'
-      commentsElem.style.fontSize = '14px'
+      commentsElem.style.fontSize = '14px';
     }
   }
 }
 
-const hideComments = () => {
-  container.style.display = 'none'
+const hideComments = (comments) => {
+  comments = document.querySelectorAll('.comments');
+  for (let i = 0; i < comments.length; i++) {
+    comments[i].remove();
+  }
+  console.log(comments);
 }
-
-
-
