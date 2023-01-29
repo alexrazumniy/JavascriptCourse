@@ -7,25 +7,14 @@ const renderPostlist = (postList) => {
     const button = document.createElement("button");
 
     titleElem.innerText = post.title;
+    titleElem.style.padding = '0px';
     bodyElem.innerText = post.body;
+    postContainer.classList.add('postContainer')
     button.innerText = "Show comments";
+    button.classList.add('button')
 
     postContainer.append(titleElem, bodyElem, button);
     document.body.append(postContainer);
-
-    document.body.style.fontFamily = 'Arial'
-    document.body.style.fontSize = '16px'
-    postContainer.style.width = '1000px';
-    postContainer.style.paddingLeft = '25px';
-    postContainer.style.paddingBottom = '25px';
-    postContainer.style.marginBottom = '25px';
-    postContainer.style.border = '1px solid';
-    postContainer.style.borderRadius = '10px';
-    titleElem.style.padding = '0px';
-    button.style.width = '170px';
-    button.style.padding = '5px';
-    button.style.border = '2px solid';
-    button.style.borderRadius = '5px';
 
     let postsId = post.id
 
