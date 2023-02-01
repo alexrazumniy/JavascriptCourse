@@ -21,13 +21,21 @@ const getCountry = async (url) => {
 
     showPreloader(true);
 
-    const response = await fetch(url);
-    const countryRes = await response.json();
-    const {country_name: country, country_capital: capital, currency} = countryRes;
-    console.log(countryRes);
-        
-    getCountryFlag(COUNTRY_FLAG, country);
-    createCountryCard(country, capital, currency);
+    try {
+        const response = await fetch(url);
+        if (response.status === 200 || response.status === 201) {
+            const countryRes = await response.json();
+            const { country_name: country, country_capital: capital, currency } = countryRes;
+
+            getCountryFlag(COUNTRY_FLAG, country);
+            createCountryCard(country, capital, currency);
+        } else {
+            throw new Error(`An error has occurred. Error status ${response.status}`)
+        }
+    } catch (err) {
+        let errorText = error.message
+        alert(errorText)
+    }
 
 }
 getCountry(BASE_URL)
@@ -35,9 +43,18 @@ getCountry(BASE_URL)
 
 const getCountryFlag = async (url, countryName) => {
 
-    const response = await fetch(`${COUNTRY_FLAG}/${countryName}`);
-    const flag = await response.json();
-    const flagRes = renderFlag(flag[0].flag);    
+    try {
+        const response = await fetch(`${COUNTRY_FLAG}/${countryName}`);
+        if (response.status === 200 || response.status === 201) {
+            const flag = await response.json();
+            const flagRes = renderFlag(flag[0].flag);
+        } else {
+            throw new Error(`An error has occurred. Error status ${response.status}`)
+        }
+    } catch (err) {
+        let errorText = error.message
+        alert(errorText)
+    }
 }
 
 const renderFlag = (flag) => {
