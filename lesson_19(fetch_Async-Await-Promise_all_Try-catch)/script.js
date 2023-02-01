@@ -33,9 +33,9 @@ const getCountry = async (url) => {
 getCountry(BASE_URL)
 
 
-const getCountryFlag = async (url, countryInfo) => {
+const getCountryFlag = async (url, countryName) => {
 
-    const response = await fetch(`${COUNTRY_FLAG}/${countryInfo}`);
+    const response = await fetch(`${COUNTRY_FLAG}/${countryName}`);
     const flag = await response.json();
     const flagRes = renderFlag(flag[0].flag);    
 }
