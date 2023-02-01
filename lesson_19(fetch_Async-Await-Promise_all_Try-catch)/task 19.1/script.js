@@ -33,7 +33,7 @@ const getCountry = async (url) => {
             throw new Error(`An error has occurred. Error status ${response.status}`)
         }
     } catch (err) {
-        let errorText = error.message
+        let errorText = err.message
         alert(errorText)
     }
 
@@ -47,12 +47,12 @@ const getCountryFlag = async (url, countryName) => {
         const response = await fetch(`${COUNTRY_FLAG}/${countryName}`);
         if (response.status === 200 || response.status === 201) {
             const flag = await response.json();
-            const flagRes = renderFlag(flag[0].flag);
+            renderFlag(flag[0].flag);
         } else {
             throw new Error(`An error has occurred. Error status ${response.status}`)
         }
     } catch (err) {
-        let errorText = error.message
+        let errorText = err.message
         alert(errorText)
     }
 }
