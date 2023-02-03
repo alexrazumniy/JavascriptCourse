@@ -28,7 +28,7 @@ const handleSubmit = (event) => {
         return
     }
     getCharacter(charId);
-    submitButton.setAttribute("disabled", "");
+    submitButton.setAttribute("disabled", ""); // Исключаем повторное нажатие кнопки до рендерига списка фильмов
     submitButton.classList.remove("btn-submit");
 }
 form.addEventListener("submit", handleSubmit);
@@ -102,6 +102,6 @@ const getFilmsList = async (urls) => {
         console.log(errorText);
         alert(errorText);
     }
-    submitButton.removeAttribute("disabled");
+    submitButton.removeAttribute("disabled"); // Разрешаем запрос еще персонажа
     submitButton.classList.add("btn-submit");
 }
