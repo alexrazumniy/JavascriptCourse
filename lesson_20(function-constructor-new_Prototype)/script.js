@@ -1,58 +1,44 @@
-function PublicService({index, tariff}) {
-  this.index = index;
-  this.tariff = tariff;
-  console.log(this);
-}
-
-function addMeterReadings(index, value) {
-  // const {index, value} = options;
+function PublicService(service) {
+  const { serviceIndex, value } = service;
+  this.serviceIndex = serviceIndex;
   this.value = value;
-  PublicService.call(this, value);
 }
-const meterReadings = new PublicService( 'hotWater', 7 );
-console.log(meterReadings);
-// meterReadings.addMeterReadings(7, 3)
 
-PublicService.prototype.addMeterReadings = function (index, value) {
+PublicService.prototype.addMeterReadings = function (tariff) {
+  this.tariff = tariff;
 
-    // const {index: value} = options;
-    for(option in tariffs) {
-      const indicator = document.createElement('p');
-      indicator.innerText = `${index} составляет ${value} куб.м`;
-      document.body.append(indicator);
-  
-    }
-    console.log(indicator);
-  }
+  const servicePay = this.value * this.tariff
+  console.log(servicePay);
+
+  const serviceName = document.createElement('p');
+  serviceName.innerText = `${this.serviceIndex}:  ${this.value}, tariff = ${this.tariff}, pay = ${servicePay}`
+  document.body.append(serviceName);
+}
 
 
-
-// const tariffs = {
-//   hotWater: 7,
-//   coldWater: 1,
-//   gas: 0.3,
-//   electricity: 1.6,
+// if (this.serviceIndex) {
+//   throw new Error(`Service ${this.serviceIndex} is unavailable`);
 // }
 
 
+PublicService.prototype.deleteMeterReadings = function (serviceIndex) {
+  console.log(serviceIndex);
+}
+
+const service1 = new PublicService({ serviceIndex: 'hotWater', value: 100 });
+service1.addMeterReadings(7)
+console.log(service1);
+const service2 = new PublicService({ serviceIndex: 'coldWater', value: 200 });
+service2.addMeterReadings(1)
+const service3 = new PublicService({ serviceIndex: 'coldWater', value: 200 });
+service2.addMeterReadings(1)
+console.log(service2);
 
 
 
-// PublicService.prototype.addMeterReadings = function (index, value) {
 
-//   const {index: value} = options;
-//   for(option in tariffs) {
-//     const indicator = document.createElement('p');
-//     indicator.innerText = `${index} составляет ${value} куб.м`;
-//     document.body.append(indicator);
 
-//   // }
-//   // console.log(indicator);
-// }
-// }
-// const meterReadings = new PublicService({ tariffs });
-// console.log(meterReadings);
-// meterReadings.addMeterReadings({ tariffs })
+
 
 
 //   this.getSum = function (consumptionVolume, tariff) {
