@@ -1,68 +1,58 @@
-function PublicService(service) {
-  const { serviceIndex, value } = service;
-  this.serviceIndex = serviceIndex;
-  this.value = value;
+function PublicService() {
+  this.services = []; // [{key: 'service', volume: 100}, {}, {}]
+
+  this.tariffs = {
+    hotWater: 75,
+    coldWater: 36,
+    gas: 8,
+    electricity: 1.44,
+  }
 }
 
-PublicService.prototype.addMeterReadings = function (tariff) {
-  this.tariff = tariff;
+PublicService.prototype.addMeterReadings = function (volume, serviceName) {
+  if (!Object.keys(this.tariffs).includes(serviceName)) {
+    throw new Error(`Service ${serviceName} is unavailable`)
+  }
 
-  const servicePay = this.value * this.tariff
-  console.log(servicePay);
+  if (this.services.some(({ key }) => key === serviceName)) {
+    throw new Error(`Service "${serviceName}" is already included`)
+  }
 
-  const serviceName = document.createElement('p');
-  serviceName.innerText = `${this.serviceIndex}:  ${this.value}, tariff = ${this.tariff}, pay = ${servicePay}`
-  document.body.append(serviceName);
+  this.services.push({ key: serviceName, volume })
 }
 
 
-// if (this.serviceIndex) {
-//   throw new Error(`Service ${this.serviceIndex} is unavailable`);
-// }
-
-
-PublicService.prototype.deleteMeterReadings = function (serviceIndex) {
-  console.log(serviceIndex);
+PublicService.prototype.deleteMeterReadings = function (serviceName) {
+  this.services = this.services.filter(({ key }) => key !== serviceName)
 }
 
-const service1 = new PublicService({ serviceIndex: 'hotWater', value: 100 });
-service1.addMeterReadings(7)
-console.log(service1);
-const service2 = new PublicService({ serviceIndex: 'coldWater', value: 200 });
-service2.addMeterReadings(1)
-const service3 = new PublicService({ serviceIndex: 'coldWater', value: 200 });
-service2.addMeterReadings(1)
-console.log(service2);
+PublicService.prototype.getSum = function () {
+  let sum = 0;
+  this.services.forEach(({ key, volume }) => {
+    sum += this.tariffs[key] * volume
 
+    const serviceDiv = document.createElement('p');
+    serviceDiv.innerText = `${key}:  ${volume} cub.m, (${this.tariffs[key]} UAH/cub.m), ${this.tariffs[key] * volume} UAH`;
+    if (key === 'electricity') {
+      serviceDiv.innerText = `${key}:  ${volume} kWh, (${this.tariffs[key]} UAH/kWh), ${this.tariffs[key] * volume} UAH`;
+    }
+    document.body.append(serviceDiv);
+  })
+  const sumDiv = document.createElement('p');
+  sumDiv.innerText = `Total sum = ${sum} UAH`
+  sumDiv.style.fontWeight = 'bold'
+  document.body.append(sumDiv);
 
+  console.log(sum);
+  return sum
+}
 
+const service = new PublicService();
 
-
-
-
-
-//   this.getSum = function (consumptionVolume, tariff) {
-//     this.consumptionVolume = consumptionVolume;
-//     this.tariff = tariff;
-//     const payment = consumptionVolume * tariff;
-//     console.log(payment);
-// }
-
-// const calcHotWater = new PublicService();
-// calcHotWater.addMeterReadings('Объем горячей воды', '100');
-// console.log(calcHotWater);
-
-// const calcColdWater = new PublicService();
-// calcColdWater.addMeterReadings('Объем холодной воды', '300')
-// console.log(calcColdWater);
-
-
-
-// const service = new PublicService();
-
-// service.addMeterReadings(100, "hotWater");
-// service.addMeterReadings(200, "coldWater");
+service.addMeterReadings(10, "hotWater");
+service.addMeterReadings(20, "coldWater");
+service.addMeterReadings(25, "gas");
+service.addMeterReadings(150, "electricity");
 // service.deleteMeterReadings("coldWater");
-// service.addMeterReadings(300, "electricity");
 
-// const res = service.getSum();
+const res = service.getSum();
