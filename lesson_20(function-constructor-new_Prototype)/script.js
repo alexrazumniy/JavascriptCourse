@@ -11,17 +11,21 @@ function PublicService() {
 }
 
 PublicService.prototype.addMeterReadings = function (volume, serviceName) {
-  if (!Object.keys(this.tariffs).includes(serviceName)) {
-    throw new Error(`Service ${serviceName} is unavailable`)
-  }
+  
+  try {
+    if (!Object.keys(this.tariffs).includes(serviceName)) {
+      throw new Error(`Service ${serviceName} is unavailable`)
+    } else if (this.services.some(({ key }) => key === serviceName)) {
+      throw new Error(`Service ${serviceName} is already included`)
+    } else {
+      this.services.push({ key: serviceName, volume })
+    }
 
-  if (this.services.some(({ key }) => key === serviceName)) {
-    throw new Error(`Service "${serviceName}" is already included`)
+  } catch (err) {
+    let errorText = err.message;    
+    alert(errorText)
   }
-
-  this.services.push({ key: serviceName, volume })
 }
-
 
 PublicService.prototype.deleteMeterReadings = function (serviceName) {
   this.services = this.services.filter(({ key }) => key !== serviceName)
@@ -42,8 +46,9 @@ PublicService.prototype.getSum = function () {
     }
     document.body.append(serviceString);
   })
+
   const sumString = document.createElement('p');
-  sumString.innerText = `Total sum = ${sum.toFixed(2)} UAH`
+  sumString.innerText = `Total: ${sum.toFixed(2)} UAH`
   sumString.style.fontWeight = 'bold'
   document.body.append(sumString);
 
