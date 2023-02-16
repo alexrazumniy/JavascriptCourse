@@ -25,11 +25,11 @@ class Card {
 
     const cardName = document.createElement("h3");
     cardName.classList.add("card_name");
-    cardName.innerText = this.name;
+    cardName.innerHTML = this.name;
 
     const closeBtn = document.createElement("button");
     closeBtn.classList.add("close_button");
-    closeBtn.innerText = "X";
+    closeBtn.innerHTML = "X";
 
     closeBtn.addEventListener("click", () => {
       this.remove()
@@ -57,13 +57,13 @@ class StarshipCard extends Card {
     super.render();
 
     const textModel = document.createElement("p");
-    textModel.innerText = this.model;
+    textModel.innerHTML = this.model;
 
     const textManufacturer = document.createElement("p");
-    textManufacturer.innerText = this.manufacturer;
+    textManufacturer.innerHTML = this.manufacturer;
 
     const textMaxAtmSpeed = document.createElement("p");
-    textMaxAtmSpeed.innerText = this.max_atmosphering_speed;
+    textMaxAtmSpeed.innerHTML = this.max_atmosphering_speed;
 
     this.card.append(textModel, textManufacturer, textMaxAtmSpeed);
   }
@@ -82,13 +82,13 @@ class VehicleCard extends Card {
     super.render();
 
     const textCostInCredits = document.createElement("p");
-    textCostInCredits.innerText = this.cost_in_credits;
+    textCostInCredits.innerHTML = this.cost_in_credits;
 
     const textCrew = document.createElement("p");
-    textCrew.innerText = this.crew;
+    textCrew.innerHTML = this.crew;
 
     const textPassengers = document.createElement("p");
-    textPassengers.innerText = this.passengers;
+    textPassengers.innerHTML = this.passengers;
 
     this.card.append(textCostInCredits, textCrew, textPassengers);
   }
@@ -106,13 +106,13 @@ class PlanetCard extends Card {
     super.render();
 
     const textClimate = document.createElement("p");
-    textClimate.innerText = this.climate;
+    textClimate.innerHTML = this.climate;
 
     const textTerrain = document.createElement("p");
-    textTerrain.innerText = this.terrain;
+    textTerrain.innerHTML = this.terrain;
 
     const textPopulation = document.createElement("p");
-    textPopulation.innerText = this.population;
+    textPopulation.innerHTML = this.population;
 
     this.card.append(textClimate, textTerrain, textPopulation);
   }
@@ -173,10 +173,10 @@ form.addEventListener("submit", async (event) => {
 
   const id = Number(input.value);
   const type = select.value;
-  errorMessage.innerText = "";
+  errorMessage.innerHTML = "";
 
   if (!id) {
-    errorMessage.innerText = "Данного id не существует или введен некорректный id";
+    errorMessage.innerHTML = "Данного id не существует или введен некорректный id";
     input.value = "";
     return
   }
@@ -203,7 +203,7 @@ form.addEventListener("submit", async (event) => {
 
     console.log(item);
     console.log(card);
-    
+
   } catch (err) {
     alert(err.message);
     // showPreloader(false);
