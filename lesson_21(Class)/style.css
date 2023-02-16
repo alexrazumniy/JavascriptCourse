@@ -55,46 +55,22 @@
 }
 
 .card {
+  position: relative;
   max-width: 300px;
   padding: 10px;
   box-shadow: 2px 2px 5px 1px rgba(34, 60, 80, 0.2);
 }
 
 .close_button {
-  display: block;
-  text-align: right;
+  position: absolute;
+  top: 10px;
+  right: 10px;
 }
 
 .card_name {
   font-weight: bold;
 }
 
-
-/* #error_message {
-  position: absolute;
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 14px;
-  top: 110px;
-  left: 35px;
-  color: #f00;
-} */
-/* 
-.character_name {
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-  margin-left: 20px;
-}
-
-.films_button {
-  margin-left: 20px;
-  margin-bottom: 20px;
-  cursor: pointer;
-}
-
-.film_title {
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-  margin-top: 0;
-  margin-left: 20px;
-} */
 
 .preloader {
   display: block;
