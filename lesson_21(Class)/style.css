@@ -64,6 +64,8 @@
 }
 
 .card {
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 18px;
   position: relative;
   width: 300px;
   padding-left: 20px;
@@ -72,9 +74,10 @@
 }
 
 .close_button {
+  font-size: 14px;
   position: absolute;
-  top: 10px;
-  right: 10px;
+  top: 8px;
+  right: 8px;
 }
 
 .card_name {
@@ -83,8 +86,8 @@
 
 
 .preloader {
-  display: block;
-  display: none;
+  /* display: block;
+  display: none; */
   position: absolute;
   top: 200px;
   left: 50%;

@@ -13,12 +13,12 @@ const showPreloader = (show) => {
     preloader.style.display = "none";
   }
 };
+showPreloader(false);
 
 class Card {
   constructor({ name }) {
     this.card = document.createElement("div");
     this.name = name;
-    // this.render();
   }
   render() {
     this.card.classList.add("card");
@@ -39,6 +39,9 @@ class Card {
   }
   show() {
     cardsContainer.append(this.card);
+    showPreloader(false);
+
+    localStorage.setItem('card', this.card) // ???
   }
   remove() {
     this.card.remove();
@@ -57,18 +60,16 @@ class StarshipCard extends Card {
     super.render();
 
     const textModel = document.createElement("p");
-    textModel.innerText = this.model;
-
     const textManufacturer = document.createElement("p");
-    textManufacturer.innerText = this.manufacturer;
-
     const textMaxAtmSpeed = document.createElement("p");
+
+    textModel.innerText = this.model;
+    textManufacturer.innerText = this.manufacturer;
     textMaxAtmSpeed.innerText = this.max_atmosphering_speed;
 
     this.card.append(textModel, textManufacturer, textMaxAtmSpeed);
   }
 }
-
 
 class VehicleCard extends Card {
   constructor({ cost_in_credits, crew, passengers, ...rest }) {
@@ -82,12 +83,11 @@ class VehicleCard extends Card {
     super.render();
 
     const textCostInCredits = document.createElement("p");
-    textCostInCredits.innerText = this.cost_in_credits;
-
     const textCrew = document.createElement("p");
-    textCrew.innerText = this.crew;
-
     const textPassengers = document.createElement("p");
+
+    textCostInCredits.innerText = this.cost_in_credits;
+    textCrew.innerText = this.crew;
     textPassengers.innerText = this.passengers;
 
     this.card.append(textCostInCredits, textCrew, textPassengers);
@@ -106,12 +106,11 @@ class PlanetCard extends Card {
     super.render();
 
     const textClimate = document.createElement("p");
-    textClimate.innerText = this.climate;
-
     const textTerrain = document.createElement("p");
-    textTerrain.innerText = this.terrain;
-
     const textPopulation = document.createElement("p");
+
+    textClimate.innerText = this.climate;
+    textTerrain.innerText = this.terrain;
     textPopulation.innerText = this.population;
 
     this.card.append(textClimate, textTerrain, textPopulation);
@@ -123,29 +122,32 @@ class API {
     this.BASE_URL = "https://swapi.dev/api";
   }
 
-  // findErrors = async (id) => {
-  //   if (!response.ok) {
-  //     const { details } = await response.json();
-  //     throw new Error(details)
-  //   }
-  //   return response
-  // }
+  findErrors = async (response) => {
+    if (!response.ok) {
+      const { options } = await response.json();
+      throw new Error(options)
+    }
+    return response
+  }
 
   getStarship = async (id) => {
-    const starship = await fetch(`${this.BASE_URL}/starships/${id}`);
-    const result = await starship.json();
-    return result
+    const starship = await this.sendRequest(`${this.BASE_URL}/starships/${id}`);
+    return starship
   }
 
   getVehicle = async (id) => {
-    const vehicle = await fetch(`${this.BASE_URL}/vehicles/${id}`);
-    const result = await vehicle.json();
-    return result
+    const vehicle = await this.sendRequest(`${this.BASE_URL}/vehicles/${id}`);
+    return vehicle
   }
 
   getPlanet = async (id) => {
-    const planet = await fetch(`${this.BASE_URL}/planets/${id}`);
-    const result = await planet.json();
+    const planet = await this.sendRequest(`${this.BASE_URL}/planets/${id}`);
+    return planet
+  }
+
+  sendRequest = async (url) => {
+    const response = await this.findErrors(await fetch(url));
+    const result = await response.json();
     return result
   }
 }
@@ -172,7 +174,7 @@ form.addEventListener("submit", async (event) => {
   errorMessage.innerText = "";
 
   if (!id) {
-    errorMessage.innerText = "Данного id не существует или введен некорректный id";
+    errorMessage.innerText = "Некорректный id";
     input.value = "";
     return
   }
@@ -192,13 +194,27 @@ form.addEventListener("submit", async (event) => {
   }
 
   try {
+    showPreloader(true);
+    
     const item = await API_MAP[type](id);
+    console.log(item);
     const card = new CARD_MAP[type](item);
-
+    
     card.show();
+    errorMessage.innerText = "";
+    input.value = "";
+
+    localStorage.setItem('type', type); // ?
+    localStorage.setItem('id', id); // ?
+    console.log(localStorage);
 
   } catch (err) {
-    alert(err.message);
-    // showPreloader(false);
+
+    err.message = "Объекта с таким id не существует";
+    errorMessage.innerText = err.message;
+
+    input.value = "";
+    showPreloader(false);
   }
 })
+
