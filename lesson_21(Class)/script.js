@@ -1,8 +1,8 @@
-// const container = document.getElementById("container");
 const form = document.getElementById("form");
 const input = document.getElementById('input');
 const select = document.getElementById('select');
 const submitButton = document.getElementById('btn-submit');
+const cardsContainer = document.getElementById("cards_container");
 const errorMessage = document.getElementById('error_message');
 const preloader = document.getElementById("preloader");
 
@@ -15,7 +15,7 @@ const showPreloader = (show) => {
 };
 
 class Card {
-  constructor({name}) {
+  constructor({ name }) {
     this.card = document.createElement("div");
     this.name = name;
     // this.render();
@@ -25,11 +25,11 @@ class Card {
 
     const cardName = document.createElement("h3");
     cardName.classList.add("card_name");
-    cardName.innerHTML = this.name;
+    cardName.innerText = this.name;
 
     const closeBtn = document.createElement("button");
     closeBtn.classList.add("close_button");
-    closeBtn.innerHTML = "X";
+    closeBtn.innerText = "X";
 
     closeBtn.addEventListener("click", () => {
       this.remove()
@@ -38,7 +38,7 @@ class Card {
     this.card.append(cardName, closeBtn);
   }
   show() {
-    document.body.append(this.card); // const container = document.body
+    cardsContainer.append(this.card);
   }
   remove() {
     this.card.remove();
@@ -52,18 +52,18 @@ class StarshipCard extends Card {
     this.manufacturer = manufacturer;
     this.max_atmosphering_speed = max_atmosphering_speed;
     this.render();
-}
+  }
   render() {
     super.render();
 
     const textModel = document.createElement("p");
-    textModel.innerHTML = this.model;
+    textModel.innerText = this.model;
 
     const textManufacturer = document.createElement("p");
-    textManufacturer.innerHTML = this.manufacturer;
+    textManufacturer.innerText = this.manufacturer;
 
     const textMaxAtmSpeed = document.createElement("p");
-    textMaxAtmSpeed.innerHTML = this.max_atmosphering_speed;
+    textMaxAtmSpeed.innerText = this.max_atmosphering_speed;
 
     this.card.append(textModel, textManufacturer, textMaxAtmSpeed);
   }
@@ -82,13 +82,13 @@ class VehicleCard extends Card {
     super.render();
 
     const textCostInCredits = document.createElement("p");
-    textCostInCredits.innerHTML = this.cost_in_credits;
+    textCostInCredits.innerText = this.cost_in_credits;
 
     const textCrew = document.createElement("p");
-    textCrew.innerHTML = this.crew;
+    textCrew.innerText = this.crew;
 
     const textPassengers = document.createElement("p");
-    textPassengers.innerHTML = this.passengers;
+    textPassengers.innerText = this.passengers;
 
     this.card.append(textCostInCredits, textCrew, textPassengers);
   }
@@ -106,13 +106,13 @@ class PlanetCard extends Card {
     super.render();
 
     const textClimate = document.createElement("p");
-    textClimate.innerHTML = this.climate;
+    textClimate.innerText = this.climate;
 
     const textTerrain = document.createElement("p");
-    textTerrain.innerHTML = this.terrain;
+    textTerrain.innerText = this.terrain;
 
     const textPopulation = document.createElement("p");
-    textPopulation.innerHTML = this.population;
+    textPopulation.innerText = this.population;
 
     this.card.append(textClimate, textTerrain, textPopulation);
   }
@@ -123,33 +123,29 @@ class API {
     this.BASE_URL = "https://swapi.dev/api";
   }
 
-  findErrors = async (id) => {
-    if (!response.ok) {
-      const { details } = await response.json();
-      throw new Error(details)
-    }
-    return response
-  }
+  // findErrors = async (id) => {
+  //   if (!response.ok) {
+  //     const { details } = await response.json();
+  //     throw new Error(details)
+  //   }
+  //   return response
+  // }
 
   getStarship = async (id) => {
     const starship = await fetch(`${this.BASE_URL}/starships/${id}`);
-    return starship
+    const result = await starship.json();
+    return result
   }
 
   getVehicle = async (id) => {
     const vehicle = await fetch(`${this.BASE_URL}/vehicles/${id}`);
-    return vehicle
+    const result = await vehicle.json();
+    return result
   }
 
   getPlanet = async (id) => {
     const planet = await fetch(`${this.BASE_URL}/planets/${id}`);
-    return planet
-  }
-
-  sendRequest = async (url) => {
-    const response = await this.findErrors(await fetch(url));
-    const result = await response.json();
-    console.log(result);
+    const result = await planet.json();
     return result
   }
 }
@@ -173,10 +169,10 @@ form.addEventListener("submit", async (event) => {
 
   const id = Number(input.value);
   const type = select.value;
-  errorMessage.innerHTML = "";
+  errorMessage.innerText = "";
 
   if (!id) {
-    errorMessage.innerHTML = "Данного id не существует или введен некорректный id";
+    errorMessage.innerText = "Данного id не существует или введен некорректный id";
     input.value = "";
     return
   }
@@ -200,9 +196,6 @@ form.addEventListener("submit", async (event) => {
     const card = new CARD_MAP[type](item);
 
     card.show();
-
-    console.log(item);
-    console.log(card);
 
   } catch (err) {
     alert(err.message);

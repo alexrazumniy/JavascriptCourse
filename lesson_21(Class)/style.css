@@ -1,8 +1,8 @@
 .container {
-  max-width: 1440px;
+  max-width: 1400px;
   margin: 0 auto;
   box-shadow: 2px 5px 12px rgb(26, 157, 197);
-  padding: 16px;
+  padding: 16px 0;
 }
 
 .form {
@@ -54,11 +54,21 @@
   color: #f00;
 }
 
+.cards_container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 30px;
+  max-width: 1380px;
+  margin: 20px auto;
+}
+
 .card {
   position: relative;
-  max-width: 300px;
-  padding: 10px;
-  box-shadow: 2px 2px 5px 1px rgba(34, 60, 80, 0.2);
+  width: 300px;
+  padding-left: 20px;
+  box-shadow: 3px 3px 8px 1px rgba(199, 72, 40, 0.5);
+  border-radius: 10px;
 }
 
 .close_button {
