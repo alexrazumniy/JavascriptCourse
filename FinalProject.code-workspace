@@ -1,0 +1,37 @@
+{
+	"folders": [
+		{
+			"path": "../JS_lessons/advanced/lesson19"
+		},
+		{
+			"path": "lesson_19(fetch_Async-Await-Promise_all_Try-catch)"
+		},
+		{
+			"path": "../RESUME!!!"
+		},
+		{
+			"path": "lesson_20(function-constructor-new_Prototype)"
+		},
+		{
+			"path": "../JS_lessons/advanced/lesson20"
+		},
+		{
+			"path": "../JS_lessons/advanced/lesson21"
+		},
+		{
+			"path": "lesson_21(Class)"
+		},
+		{
+			"path": "../JS_lessons/HW_21_Danylo"
+		},
+		{
+			"path": "../jsp1"
+		},
+		{
+			"path": "final_project"
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "final_project"
+	}
+}
