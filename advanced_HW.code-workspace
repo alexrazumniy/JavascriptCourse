@@ -1,10 +1,10 @@
 {
     "folders": [
 		{
-			"path": "advanced"
+			"path": "../JavascriptCourse"
 		},
 		{
-			"path": "../JavascriptCourse"
+			"path": "../JS_lessons/advanced"
 		}
 	]
 }
