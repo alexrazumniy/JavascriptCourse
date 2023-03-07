@@ -20,6 +20,16 @@ class Card {
     this.card = document.createElement("div");
     this.name = name;
   }
+
+  getFromLocalStorage(localStorageKeys) {
+    localStorageKeys = Object.keys(localStorage);
+    localStorageKeys.forEach((key) => {
+      if (key === JSON.parse(localStorage.getItem(key))) {
+        this.card.show()
+      }
+    })
+  }
+
   render() {
     this.card.classList.add("card");
 
@@ -32,18 +42,20 @@ class Card {
     closeBtn.innerText = "X";
 
     closeBtn.addEventListener("click", () => {
-      this.remove()
+      this.remove();
     })
 
     this.card.append(cardName, closeBtn);
   }
+
   show() {
     cardsContainer.append(this.card);
     showPreloader(false);
-
-    localStorage.setItem('card', this.card) // ???
   }
+
   remove() {
+    localStorage.removeItem(this.type)
+    localStorage.removeItem(this.id)
     this.card.remove();
   }
 }
@@ -56,6 +68,7 @@ class StarshipCard extends Card {
     this.max_atmosphering_speed = max_atmosphering_speed;
     this.render();
   }
+
   render() {
     super.render();
 
@@ -79,6 +92,7 @@ class VehicleCard extends Card {
     this.passengers = passengers;
     this.render();
   }
+
   render() {
     super.render();
 
@@ -102,6 +116,7 @@ class PlanetCard extends Card {
     this.population = population;
     this.render();
   }
+
   render() {
     super.render();
 
@@ -195,11 +210,11 @@ form.addEventListener("submit", async (event) => {
 
   try {
     showPreloader(true);
-    
+
     const item = await API_MAP[type](id);
-    console.log(item);
     const card = new CARD_MAP[type](item);
-    
+
+    // getFromLocalStorage(type, id); ////// ?????????
     card.show();
     errorMessage.innerText = "";
     input.value = "";
@@ -209,7 +224,6 @@ form.addEventListener("submit", async (event) => {
     console.log(localStorage);
 
   } catch (err) {
-
     err.message = "Объекта с таким id не существует";
     errorMessage.innerText = err.message;
 
@@ -217,4 +231,3 @@ form.addEventListener("submit", async (event) => {
     showPreloader(false);
   }
 })
-
