@@ -13,7 +13,8 @@
   box-shadow: 2px 2px 5px 1px rgba(34, 60, 80, 0.2);
 }
 
-.select-object {
+.select {
+  font-size: 19px;
   padding: 5px;
   margin-right: 10px;
   border: 1px solid;

@@ -21,14 +21,6 @@ class Card {
     this.name = name;
   }
 
-  static saveToLocalStorage(key, card) {
-    localStorage.setItem(key, JSON.stringify(card));
-  };
-
-  static getFromLocalStorage(key) {
-    localStorage.getItem(key);
-  }
-
   render() {
     this.card.classList.add("card");
 
@@ -129,124 +121,97 @@ class PlanetCard extends Card {
   }
 }
 
-const get = fetch('https://swapi.dev/api');
+class API {
+  constructor() {
+    this.BASE_URL = "https://swapi.dev/api";
+  }
 
-console.log('get', get);
+  findErrors = async (response) => {
+    if (!response.ok) {
+      const { options } = await response.json();
+      throw new Error(options)
+    }
+    return response
+  }
 
-// class API {
-//   constructor() {
-//     this.BASE_URL = "https://swapi.dev/api";
-//   }
+  getStarship = async (id) => {
+    const starship = await this.sendRequest(`${this.BASE_URL}/starships/${id}`);
+    return starship
+  }
 
-//   findErrors = async (response) => {
-//     if (!response.ok) {
-//       // const { options } = await response.json();
-//       throw new Error(options)
-//     }
-//     return response
-//   }
+  getVehicle = async (id) => {
+    const vehicle = await this.sendRequest(`${this.BASE_URL}/vehicles/${id}`);
+    return vehicle
+  }
 
-//   getStarship = async (id) => {
-//     const starship = await this.sendRequest(`${this.BASE_URL}/starships/${id}`);
-//     return starship
-//   }
+  getPlanet = async (id) => {
+    const planet = await this.sendRequest(`${this.BASE_URL}/planets/${id}`);
+    return planet
+  }
 
-//   getVehicle = async (id) => {
-//     const vehicle = await this.sendRequest(`${this.BASE_URL}/vehicles/${id}`);
-//     return vehicle
-//   }
+  sendRequest = async (url) => {
+    const response = await this.findErrors(await fetch(url));
+    const result = await response.json();
+    return result
+  }
+}
 
-//   getPlanet = async (id) => {
-//     const planet = await this.sendRequest(`${this.BASE_URL}/planets/${id}`);
-//     return planet
-//   }
+const api = new API();
 
-//   sendRequest = async (url) => {
-//     const response = await this.findErrors(await fetch(url));
-//     const result = await response.json();
-//     return result
-//   }
-// }
+const CARD_MAP = {
+  starship: StarshipCard,
+  vehicle: VehicleCard,
+  planet: PlanetCard,
+}
 
-// const api = new API();
+const API_MAP = {
+  starship: api.getStarship,
+  vehicle: api.getVehicle,
+  planet: api.getPlanet,
+}
 
-// const CARD_MAP = {
-//   starship: StarshipCard,
-//   vehicle: VehicleCard,
-//   planet: PlanetCard,
-// }
+form.addEventListener("submit", async (event) => {
+  event.preventDefault();
 
-// const API_MAP = {
-//   starship: api.getStarship,
-//   vehicle: api.getVehicle,
-//   planet: api.getPlanet,
-// }
+  const id = Number(input.value);
+  const type = select.value;
+  errorMessage.innerText = "";
 
-// const handleSubmit = async (event) => {
-//   event.preventDefault();
+  if (!id) {
+    errorMessage.innerText = "Некорректный id";
+    input.value = "";
+    return
+  }
 
-//   const type = select.value;
-//   const id = Number(input.value);
+  switch (type) {
+    case 'Starship':
+      api.getStarship(id);
+      break;
 
-//   errorMessage.innerText = "";
+    case 'Vehicle':
+      api.getVehicle(id);
+      break;
 
-//   if (!id) {
-//     errorMessage.innerText = "Некорректный id";
-//     input.value = "";
-//     return
-//   }
+    case 'Planet':
+      api.getPlanet(id);
+      break;
+  }
 
-//   switch (type) {
-//     case 'Starship':
-//       api.getStarship(id);
-//       break;
+  try {
+    showPreloader(true);
 
-//     case 'Vehicle':
-//       api.getVehicle(id);
-//       break;
+    const item = await API_MAP[type](id);
+    const card = new CARD_MAP[type](item);
 
-//     case 'Planet':
-//       api.getPlanet(id);
-//       break;
-//   }
+    card.show();
+    errorMessage.innerText = "";
+    input.value = "";
 
-//   try {
-//     showPreloader(true);
+  } catch (err) {
+    err.message = "Объекта с таким id не существует";
+    errorMessage.innerText = err.message;
 
-//     const item = await API_MAP[type](id);
-//     console.log('item', item);
-//     const card = new CARD_MAP[type](item);
-//     console.log('card', card);
-
-//     card.show();
-//     errorMessage.innerText = "";
-//     input.value = "";
-
-//     Card.saveToLocalStorage(id, card);
-//     console.log(id, card);
-
-//   } catch (err) {
-//     err.message = "Объекта с таким id не существует";
-//     errorMessage.innerText = err.message;
-
-//     input.value = "";
-//     showPreloader(false);
-//   }
-// }
-
-// form.addEventListener("submit", handleSubmit);
-
-// class ShowCard extends Card {
-//   constructor(card) {
-//     super(card);
-//   }
-//   getFromLocalStorage(key) {
-//     localStorage.getItem(2);
-//     // super.show();
-//     // this.card.show();
-//   }
-// }
-
-// const showCard = new ShowCard(name)
-// console.log(showCard);
-
+    input.value = "";
+    showPreloader(false);
+  }
+})
